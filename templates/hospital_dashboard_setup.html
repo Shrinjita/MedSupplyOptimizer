@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}Hospital Dashboard Setup - SecureBlink{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0 text-center">MediGuard Security Setup</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('hospital_dashboard_setup') }}">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        {% if user.hospital_settings %}
+                            Update which security measures will be required to access the hospital dashboard.
+                        {% else %}
+                            Select which security measures will be required to access the hospital dashboard.
+                        {% endif %}
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Security Methods</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted mb-3">Select which security measures will be required to access the hospital dashboard:</p>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="require_pin" name="require_pin" 
+                                    {% if user.hospital_settings and user.hospital_settings.require_pin %}checked{% endif %}>
+                                <label class="form-check-label" for="require_pin">
+                                    <span class="badge bg-primary me-1">PIN</span> Require PIN verification
+                                </label>
+                            </div>
+                            
+                            {% if 'fingerprint' in user.biometrics %}
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="require_fingerprint" name="require_fingerprint"
+                                    {% if user.hospital_settings and user.hospital_settings.require_fingerprint %}checked{% endif %}>
+                                <label class="form-check-label" for="require_fingerprint">
+                                    <span class="badge bg-success me-1">Fingerprint</span> Require fingerprint verification
+                                </label>
+                            </div>
+                            {% endif %}
+                            
+                            {% if 'eyeblink' in user.biometrics %}
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="require_eyeblink" name="require_eyeblink"
+                                    {% if user.hospital_settings and user.hospital_settings.require_eyeblink %}checked{% endif %}>
+                                <label class="form-check-label" for="require_eyeblink">
+                                    <span class="badge bg-info me-1">Eye Blink</span> Require eye blink pattern verification
+                                </label>
+                            </div>
+                            {% endif %}
+                            
+                            {% if 'neck_movement' in user.biometrics %}
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="require_neck_movement" name="require_neck_movement"
+                                    {% if user.hospital_settings and user.hospital_settings.require_neck_movement %}checked{% endif %}>
+                                <label class="form-check-label" for="require_neck_movement">
+                                    <span class="badge bg-warning me-1">Neck Movement</span> Require neck movement verification
+                                </label>
+                            </div>
+                            {% endif %}
+                            
+                            {% if 'voice' in user.biometrics %}
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="require_voice" name="require_voice"
+                                    {% if user.hospital_settings and user.hospital_settings.require_voice %}checked{% endif %}>
+                                <label class="form-check-label" for="require_voice">
+                                    <span class="badge bg-danger me-1">Voice</span> Require voice verification
+                                </label>
+                            </div>
+                            {% endif %}
+                            
+                            {% if 'face_detection' in user.biometrics %}
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="require_face_detection" name="require_face_detection"
+                                    {% if user.hospital_settings and user.hospital_settings.require_face_detection %}checked{% endif %}>
+                                <label class="form-check-label" for="require_face_detection">
+                                    <span class="badge bg-secondary me-1">Face Detection</span> Require face verification
+                                </label>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save me-1"></i> {% if user.hospital_settings %}Update{% else %}Save{% endif %} Security Settings
+                        </button>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-times me-1"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

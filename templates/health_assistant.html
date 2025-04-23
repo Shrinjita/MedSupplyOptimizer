@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Health Assistant - MediGuard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Health Assistant</h4>
+                    <div>
+                        <a href="{{ url_for('hospital_dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Hospital Dashboard
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <i class="fas fa-robot fa-4x text-primary mb-3"></i>
+                        <h2>MediGuard Health Assistant</h2>
+                        <p class="lead mb-4">Starting the AI-powered medical research assistant...</p>
+                        
+                        <div class="spinner-border text-primary mb-4" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        
+                        <p>If you are not automatically redirected, please click the button below:</p>
+                        
+                        <a href="http://localhost:5001" class="btn btn-lg btn-primary">
+                            <i class="fas fa-external-link-alt me-2"></i>
+                            Launch Health Assistant
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Redirect after a short delay to allow the RAG app to start
+    setTimeout(function() {
+        window.location.href = "http://localhost:5001";
+    }, 2000);
+</script>
+{% endblock %}

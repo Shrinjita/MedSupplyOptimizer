@@ -1,0 +1,1613 @@
+{% extends 'base.html' %}
+
+{% block title %}Hospital Dashboard Access - SecureBlink{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0 text-center">Access Hospital Dashboard</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="feature-icon mx-auto mb-2" style="font-size: 1.8rem;">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h4>Hospital Dashboard Access</h4>
+                </div>
+                
+                <div class="step-indicator mb-4">
+                    <div class="step active">
+                        <div class="step-circle">1</div>
+                        <div class="step-connector"></div>
+                        <div class="step-text">PIN</div>
+                    </div>
+                    {% if security_settings.require_fingerprint or security_settings.require_eyeblink or security_settings.require_neck_movement or security_settings.require_voice or security_settings.require_face_detection %}
+                    <div class="step">
+                        <div class="step-circle">2</div>
+                        <div class="step-connector"></div>
+                        <div class="step-text">Biometrics</div>
+                    </div>
+                    {% endif %}
+                    <div class="step">
+                        <div class="step-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="step-text">Access</div>
+                    </div>
+                </div>
+                
+                <form method="POST" action="{{ url_for('access_hospital_dashboard') }}" id="pinForm">
+                    <div class="mb-4">
+                        <label for="pin" class="form-label">
+                            <i class="fas fa-key me-2"></i>Enter your PIN
+                        </label>
+                        <input type="password" class="form-control form-control-lg text-center" id="pin" name="pin" required maxlength="6" pattern="[0-9]{4,6}" placeholder="* * * * * *">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-unlock me-2"></i>Verify PIN
+                        </button>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                    </div>
+                </form>
+                
+                <div id="biometricVerification" class="mt-4" style="display: none;">
+                    <h5 class="text-center mb-3">Biometric Verification</h5>
+                    
+                    {% if security_settings.require_fingerprint %}
+                    <div class="d-flex align-items-center justify-content-between p-2 border rounded mb-2">
+                        <div>
+                            <i class="fas fa-fingerprint me-2"></i> Fingerprint
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary verify-button" data-bio-type="fingerprint">
+                                Verify
+                            </button>
+                            <span id="fingerprint-status" class="ms-2 small"></span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if security_settings.require_eyeblink %}
+                    <div class="d-flex align-items-center justify-content-between p-2 border rounded mb-2">
+                        <div>
+                            <i class="fas fa-eye me-2"></i> Eye Blink
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary verify-button" data-bio-type="eyeblink">
+                                Verify
+                            </button>
+                            <span id="eyeblink-status" class="ms-2 small"></span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if security_settings.require_neck_movement %}
+                    <div class="d-flex align-items-center justify-content-between p-2 border rounded mb-2">
+                        <div>
+                            <i class="fas fa-head-side-mask me-2"></i> Neck Movement
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary verify-button" data-bio-type="neck_movement">
+                                Verify
+                            </button>
+                            <span id="neck_movement-status" class="ms-2 small"></span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if security_settings.require_voice %}
+                    <div class="d-flex align-items-center justify-content-between p-2 border rounded mb-2">
+                        <div>
+                            <i class="fas fa-microphone me-2"></i> Voice Recognition
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary verify-button" data-bio-type="voice">
+                                Verify
+                            </button>
+                            <span id="voice-status" class="ms-2 small"></span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if security_settings.require_face_detection %}
+                    <div class="d-flex align-items-center justify-content-between p-2 border rounded mb-2">
+                        <div>
+                            <i class="fas fa-user me-2"></i> Face Detection
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary verify-button" data-bio-type="face_detection">
+                                Verify
+                            </button>
+                            <span id="face_detection-status" class="ms-2 small"></span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="d-grid mt-3">
+                        <button type="button" id="verifyAllButton" class="btn btn-success">
+                            <i class="fas fa-check-circle me-2"></i>Verify All Biometrics
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="accessGranted" class="text-center mt-4" style="display: none;">
+                    <div class="feature-icon mx-auto mb-3" style="background-color: rgba(40, 167, 69, 0.1); color: #28a745;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>Access Granted!</h4>
+                    <p class="mb-4">Your verification was successful. You can now access the hospital dashboard.</p>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('hospital_dashboard') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-hospital me-2"></i>Enter Hospital Dashboard
+                        </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('pinForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const pin = formData.get('pin');
+    
+    // Show processing state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Verifying...';
+    
+    // Make an AJAX request to verify the PIN
+    fetch('/verify_hospital_pin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pin: pin })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // PIN is correct
+            document.querySelector('.step:nth-child(1)').classList.add('complete');
+            
+            // Check if biometric verification is required
+            if (document.querySelector('.step:nth-child(2)')) {
+                document.querySelector('.step:nth-child(2)').classList.add('active');
+                document.getElementById('pinForm').style.display = 'none';
+                document.getElementById('biometricVerification').style.display = 'block';
+            } else {
+                // If no biometrics required, complete the process
+                finalizeAccess();
+            }
+        } else {
+            // PIN is incorrect - show error
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger mt-3';
+            errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>' + 
+                                 (data.message || 'Incorrect PIN. Please try again.');
+            
+            // Insert error message after the PIN input
+            const pinInput = document.getElementById('pin');
+            pinInput.parentNode.insertAdjacentElement('afterend', errorDiv);
+            
+            // Clear and focus the PIN input
+            pinInput.value = '';
+            pinInput.focus();
+            
+            // Remove error message after 3 seconds
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 3000);
+        }
+    })
+    .catch(error => {
+        console.error('PIN verification error:', error);
+        
+        // Show error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'alert alert-danger mt-3';
+        errorDiv.textContent = 'An error occurred while verifying your PIN. Please try again.';
+        
+        submitBtn.parentNode.insertAdjacentElement('beforebegin', errorDiv);
+        
+        // Remove error after 3 seconds
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 3000);
+    })
+    .finally(() => {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    });
+});
+
+// Individual verify buttons use the verification functionality
+const verifyButtons = document.querySelectorAll('.verify-button');
+verifyButtons.forEach(button => {
+    button.addEventListener('click', async function() {
+        const bioType = this.dataset.bioType;
+        const verified = await verifyBiometric(bioType, 'hospital');
+        
+        if (verified) {
+            // Check if all biometrics are verified
+            checkAllBiometricsVerified();
+        }
+    });
+});
+
+// Verify All button functionality
+document.getElementById('verifyAllButton').addEventListener('click', async function() {
+    this.disabled = true;
+    this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Starting verification...';
+    
+    // Get all biometric types that need verification
+    const biometricTypes = [];
+    
+    const verifyButtons = document.querySelectorAll('.verify-button');
+    verifyButtons.forEach(button => {
+        // Only include biometrics that haven't been verified yet
+        if (!button.classList.contains('btn-success') && 
+            !(button.disabled && button.innerHTML.includes('Verified'))) {
+            biometricTypes.push(button.dataset.bioType);
+        }
+    });
+    
+    let allVerified = true;
+    
+    // If no biometrics need verification, proceed directly
+    if (biometricTypes.length === 0) {
+        this.innerHTML = '<i class="fas fa-check-circle me-2"></i>All Verified Successfully';
+        checkAllBiometricsVerified();
+        return;
+    }
+    
+    // Verify each biometric that hasn't been verified yet
+    for (const bioType of biometricTypes) {
+        this.innerHTML = `<span class="spinner-border spinner-border-sm" role="status"></span> Verifying ${bioType.replace('_', ' ')}...`;
+        
+        const bioButton = document.querySelector(`.verify-button[data-bio-type="${bioType}"]`);
+        
+        // Skip if already verified
+        if (bioButton.classList.contains('btn-success') || 
+            (bioButton.disabled && bioButton.innerHTML.includes('Verified'))) {
+            continue;
+        }
+        
+        const verified = await verifyBiometric(bioType, 'hospital', true);
+        
+        if (!verified) {
+            allVerified = false;
+            break;
+        }
+        
+        // Wait a moment before moving to next biometric
+        await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    
+    if (allVerified) {
+        this.innerHTML = '<i class="fas fa-check-circle me-2"></i>All Verified Successfully';
+        
+        // Check all biometrics again to trigger the completion flow
+        checkAllBiometricsVerified();
+    } else {
+        this.innerHTML = '<i class="fas fa-times-circle me-2"></i>Verification Failed';
+        this.classList.remove('btn-success');
+        this.classList.add('btn-danger');
+        setTimeout(() => {
+            this.disabled = false;
+            this.innerHTML = '<i class="fas fa-check-circle me-2"></i>Retry All Biometrics';
+            this.classList.remove('btn-danger');
+            this.classList.add('btn-success');
+        }, 3000);
+    }
+});
+
+async function verifyBiometric(bioType, context = 'hospital', skipStatusUpdate = false) {
+    const statusElement = document.getElementById(`${bioType}-status`);
+    const bioButton = document.querySelector(`.verify-button[data-bio-type="${bioType}"]`);
+    
+    // Hide the status element completely - we won't use it
+    if (statusElement) {
+        statusElement.style.display = 'none';
+    }
+    
+    // Disable the button immediately to prevent multiple clicks
+    bioButton.disabled = true;
+    
+    // Change button appearance to show loading state
+    bioButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verifying...';
+    bioButton.classList.remove('btn-outline-primary');
+    bioButton.classList.add('btn-primary');
+    
+    // Handle special biometric types with custom UI
+    if (bioType === 'fingerprint') {
+        // Return fingerprint verification result
+        const fpResult = await verifyFingerprint();
+        return fpResult;
+    }
+    
+    if (bioType === 'face_detection') {
+        // Return face detection verification result  
+        const faceResult = await verifyFaceDetection();
+        return faceResult;
+    }
+    
+    if (bioType === 'eyeblink') {
+        // Return eyeblink verification result
+        const eyeBlinkResult = await verifyEyeBlink();
+        return eyeBlinkResult;
+    }
+    
+    if (bioType === 'neck_movement') {
+        // Return neck movement verification result
+        const neckResult = await verifyNeckMovement();
+        return neckResult;
+    }
+    
+    if (bioType === 'voice') {
+        // Return voice verification result
+        const voiceResult = await verifyVoice();
+        return voiceResult;
+    }
+    
+    // Default behavior for other biometric types
+    try {
+        // Call the actual verification API
+        const response = await fetch('/verify_hospital_biometric', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                biometric_type: bioType,
+                context: context
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Update button to show success
+            bioButton.innerHTML = '<i class="fas fa-check-circle me-1"></i> Verified';
+            bioButton.classList.remove('btn-primary');
+            bioButton.classList.add('btn-success');
+            return true;
+        } else {
+            // Re-enable button on failure and show failure state
+            bioButton.disabled = false;
+            bioButton.innerHTML = '<i class="fas fa-times-circle me-1"></i> Try Again';
+            bioButton.classList.remove('btn-primary'); 
+            bioButton.classList.add('btn-danger');
+            
+            // Show error message if provided
+            if (result.error) {
+                console.error('Verification error:', result.error);
+            }
+            
+            // Reset button visual state after 2 seconds
+            setTimeout(() => {
+                bioButton.classList.remove('btn-danger');
+                bioButton.classList.add('btn-outline-primary');
+                bioButton.innerHTML = 'Verify';
+            }, 2000);
+            
+            return false;
+        }
+    } catch (error) {
+        // Re-enable button on error and show error state
+        bioButton.disabled = false;
+        bioButton.innerHTML = '<i class="fas fa-times-circle me-1"></i> Error';
+        bioButton.classList.remove('btn-primary');
+        bioButton.classList.add('btn-danger');
+        
+        console.error('Verification error:', error);
+        
+        // Reset button visual state after 2 seconds
+        setTimeout(() => {
+            bioButton.classList.remove('btn-danger');
+            bioButton.classList.add('btn-outline-primary');
+            bioButton.innerHTML = 'Verify';
+        }, 2000);
+        
+        return false;
+    }
+}
+
+// Add these specialized verification functions to handle different biometric types
+
+// Fingerprint verification
+async function verifyFingerprint() {
+    const bioButton = document.querySelector('.verify-button[data-bio-type="fingerprint"]');
+    bioButton.disabled = true;
+    bioButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Verifying...';
+    
+    // Return a Promise that resolves when the verification is complete
+    return new Promise((resolve, reject) => {
+        let sequenceNumber = 1;
+        let totalFingerprints = 1; // Will be updated after first verification
+        
+        // Function to verify each fingerprint in sequence
+        async function verifyNextFingerprint(sequence) {
+            // Create a modal for fingerprint upload
+            const modalDiv = document.createElement('div');
+            modalDiv.id = 'fingerprintVerifyModal';
+            modalDiv.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            `;
+            
+            modalDiv.innerHTML = `
+                <div style="background-color: white; border-radius: 8px; padding: 25px; max-width: 600px; width: 90%;">
+                    <div style="text-align: center;">
+                        <h4 style="color: #333; margin-bottom: 20px;">Fingerprint Verification - Sequence ${sequence}</h4>
+                        
+                        <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-left: 5px solid #007bff;">
+                            <p style="font-size: 1.1rem;">Please upload fingerprint #${sequence} for verification</p>
+                        </div>
+                        
+                        <div id="fingerprintUploadArea" style="min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <i class="fas fa-fingerprint fa-4x mb-3" style="color: #007bff;"></i>
+                            
+                            <div class="progress mb-3 mt-2" style="height: 10px; width: 80%;">
+                                <div class="progress-bar" role="progressbar" style="width: ${(sequence-1)/totalFingerprints*100}%" aria-valuenow="${sequence-1}" aria-valuemin="0" aria-valuemax="${totalFingerprints}"></div>
+                            </div>
+                            <p>Verifying fingerprint ${sequence} of ${totalFingerprints}</p>
+                            
+                            <div class="mb-3 mt-3" style="width: 100%; max-width: 300px;">
+                                <input type="file" id="verifyFingerprintInput" class="form-control" accept="image/*">
+                            </div>
+                            
+                            <button id="submitFingerprintBtn" class="btn btn-primary mt-2">
+                                <i class="fas fa-upload me-2"></i>Verify Fingerprint #${sequence}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modalDiv);
+            
+            return new Promise((resolveVerify, rejectVerify) => {
+                // Set up the verification process
+                document.getElementById('submitFingerprintBtn').addEventListener('click', async function() {
+                    const fileInput = document.getElementById('verifyFingerprintInput');
+                    
+                    if (!fileInput.files || fileInput.files.length === 0) {
+                        alert('Please select a fingerprint image to verify');
+                        return;
+                    }
+                    
+                    // Show processing UI
+                    document.getElementById('fingerprintUploadArea').innerHTML = `
+                        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                        <h5>Analyzing Fingerprint #${sequence}...</h5>
+                        <div class="progress mt-3" style="height: 10px; width: 80%;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                        </div>
+                    `;
+                    
+                    // Create form data to send the file
+                    const formData = new FormData();
+                    formData.append('fingerprint_image', fileInput.files[0]);
+                    formData.append('biometric_type', 'fingerprint');
+                    formData.append('sequence_number', sequence);
+                    
+                    try {
+                        // Send the fingerprint to the server for verification
+                        const response = await fetch('/verify_hospital_biometric', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        // Check if response is valid before trying to parse JSON
+                        if (!response.ok) {
+                            throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+                        }
+                        
+                        // Get response text first to check if it's valid JSON
+                        const responseText = await response.text();
+                        let result;
+                        
+                        try {
+                            result = JSON.parse(responseText);
+                        } catch (jsonError) {
+                            console.error('Invalid JSON response:', responseText);
+                            throw new Error('Server returned invalid JSON response');
+                        }
+                        
+                        // Update total fingerprints if this is the first one
+                        if (sequence === 1 && result.total_fingerprints) {
+                            totalFingerprints = result.total_fingerprints;
+                        }
+                        
+                        // Show results
+                        if (result.success) {
+                            document.getElementById('fingerprintUploadArea').innerHTML = `
+                                <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                    <i class="fas fa-check fa-3x" style="color: white;"></i>
+                                </div>
+                                <h4>Fingerprint #${sequence} Verified!</h4>
+                                <div class="mt-3 p-2 bg-light rounded" style="width: 80%;">
+                                    <p><strong>Match Score:</strong> ${result.similarity}%</p>
+                                    <p><strong>Required:</strong> ${result.threshold}%</p>
+                                </div>
+                                <div class="progress mb-3 mt-3" style="height: 10px; width: 80%;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: ${sequence/totalFingerprints*100}%" aria-valuenow="${sequence}" aria-valuemin="0" aria-valuemax="${totalFingerprints}"></div>
+                                </div>
+                                <p>Progress: ${sequence} of ${totalFingerprints} fingerprints</p>
+                                <button id="fingerprintContinueBtn" class="btn btn-success mt-4">Continue</button>
+                            `;
+                            
+                            // Set up continue button
+                            document.getElementById('fingerprintContinueBtn').addEventListener('click', function() {
+                                modalDiv.remove();
+                                
+                                // If this is the last fingerprint, update UI and resolve
+                                if (result.is_last || sequence >= totalFingerprints) {
+                                    // Update the verification button to show success
+                                    bioButton.innerHTML = '<i class="fas fa-check-circle me-1"></i> Verified';
+                                    bioButton.classList.remove('btn-outline-primary');
+                                    bioButton.classList.add('btn-success');
+                                    resolveVerify(true);
+                                } else {
+                                    // Continue to next fingerprint in sequence
+                                    verifyNextFingerprint(sequence + 1).then(resolveVerify).catch(rejectVerify);
+                                }
+                            });
+                        } else {
+                            document.getElementById('fingerprintUploadArea').innerHTML = `
+                                <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                    <i class="fas fa-times fa-3x" style="color: white;"></i>
+                                </div>
+                                <h4>Verification Failed</h4>
+                                <p>${result.error || "Fingerprint does not match"}</p>
+                                <div class="d-flex mt-4">
+                                    <button id="fingerprintRetryBtn" class="btn btn-primary me-2">Try Again</button>
+                                    <button id="fingerprintCancelBtn" class="btn btn-secondary">Cancel</button>
+                                </div>
+                            `;
+                            
+                            // Reset the verification button
+                            bioButton.disabled = false;
+                            bioButton.innerHTML = '<i class="fas fa-times-circle me-1"></i> Failed';
+                            bioButton.classList.remove('btn-outline-primary');
+                            bioButton.classList.add('btn-danger');
+                            
+                            // Reset button after delay
+                            setTimeout(() => {
+                                bioButton.classList.remove('btn-danger');
+                                bioButton.classList.add('btn-outline-primary');
+                                bioButton.innerHTML = 'Verify';
+                            }, 2000);
+                            
+                            // Set up retry and cancel buttons
+                            document.getElementById('fingerprintRetryBtn').addEventListener('click', function() {
+                                modalDiv.remove();
+                                verifyNextFingerprint(sequence).then(resolveVerify).catch(rejectVerify);
+                            });
+                            
+                            document.getElementById('fingerprintCancelBtn').addEventListener('click', function() {
+                                modalDiv.remove();
+                                resolveVerify(false);
+                            });
+                        }
+                    } catch (error) {
+                        console.error('Verification error:', error);
+                        
+                        document.getElementById('fingerprintUploadArea').innerHTML = `
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                <i class="fas fa-exclamation-triangle fa-3x" style="color: white;"></i>
+                            </div>
+                            <h4>Error During Verification</h4>
+                            <p>${error.message || "An unexpected error occurred"}</p>
+                            <div class="d-flex mt-4">
+                                <button id="fingerprintRetryBtn" class="btn btn-primary me-2">Try Again</button>
+                                <button id="fingerprintCancelBtn" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        `;
+                        
+                        // Reset the button
+                        bioButton.disabled = false;
+                        bioButton.innerHTML = 'Verify';
+                        
+                        // Set up retry and cancel buttons
+                        document.getElementById('fingerprintRetryBtn').addEventListener('click', function() {
+                            modalDiv.remove();
+                            verifyNextFingerprint(sequence).then(resolveVerify).catch(rejectVerify);
+                        });
+                        
+                        document.getElementById('fingerprintCancelBtn').addEventListener('click', function() {
+                            modalDiv.remove();
+                            resolveVerify(false);
+                        });
+                    }
+                });
+                
+                // Cancel button for the whole modal
+                const cancelButton = document.createElement('button');
+                cancelButton.className = 'btn btn-outline-secondary mt-2';
+                cancelButton.style.position = 'absolute';
+                cancelButton.style.top = '10px';
+                cancelButton.style.right = '10px';
+                cancelButton.innerHTML = '<i class="fas fa-times"></i>';
+                cancelButton.addEventListener('click', function() {
+                    modalDiv.remove();
+                    
+                    // Reset the button
+                    bioButton.disabled = false;
+                    bioButton.innerHTML = 'Verify';
+                    
+                    resolveVerify(false);
+                });
+                
+                modalDiv.querySelector('div').appendChild(cancelButton);
+            });
+        }
+        
+        // Start the verification with the first fingerprint
+        verifyNextFingerprint(1)
+            .then(success => {
+                resolve(success);
+            })
+            .catch(error => {
+                console.error("Error in fingerprint verification sequence:", error);
+                bioButton.disabled = false;
+                bioButton.innerHTML = 'Verify';
+                resolve(false);
+            });
+    });
+}
+
+function checkAllBiometricsVerified() {
+    const allButtons = document.querySelectorAll('.verify-button');
+    const allVerified = Array.from(allButtons).every(btn => 
+        btn.classList.contains('btn-success') || 
+        (btn.disabled && btn.innerHTML.includes('Verified'))
+    );
+    
+    if (allVerified) {
+        document.querySelector('.step:nth-child(2)').classList.add('complete');
+        document.querySelector('.step:nth-child(3)').classList.add('active');
+        
+        // Show the access granted screen
+        document.getElementById('biometricVerification').style.display = 'none';
+        document.getElementById('accessGranted').style.display = 'block';
+        
+        // Call finalizeAccess directly
+        finalizeAccess();
+    }
+}
+
+function finalizeAccess() {
+    document.querySelector('.step:nth-child(3)').classList.add('active');
+    document.getElementById('pinForm').style.display = 'none';
+    document.getElementById('biometricVerification').style.display = 'none';
+    document.getElementById('accessGranted').style.display = 'block';
+    
+    // Update the session to indicate access is granted
+    fetch('/grant_hospital_access', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+}
+
+// Face Detection Verification - Updated to match open_file.html implementation
+async function verifyFaceDetection() {
+    const bioButton = document.querySelector('.verify-button[data-bio-type="face_detection"]');
+    bioButton.disabled = true;
+    bioButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Verifying...';
+    
+    // Create a modal for face verification
+    const modalDiv = document.createElement('div');
+    modalDiv.id = 'faceVerifyModal';
+    modalDiv.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    `;
+    
+    modalDiv.innerHTML = `
+        <div style="background-color: white; border-radius: 8px; padding: 25px; max-width: 600px; width: 90%;">
+            <div style="text-align: center;">
+                <h4 class="mb-3">Face Verification</h4>
+                <p>Click the button below to start face verification.</p>
+                <p>A camera window will open in a separate window for face verification.</p>
+                <button id="startFaceVerifyBtn" class="btn btn-primary mt-3 mb-3">
+                    <i class="fas fa-camera me-2"></i>Start Face Verification
+                </button>
+                <div id="faceVerifyStatus" class="mt-3">
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modalDiv);
+    
+    // Return a Promise to handle the verification result
+    return new Promise((resolve, reject) => {
+        // Set up the verification process
+        document.getElementById('startFaceVerifyBtn').addEventListener('click', async function() {
+            const statusDiv = document.getElementById('faceVerifyStatus');
+            const startBtn = document.getElementById('startFaceVerifyBtn');
+            
+            // Update status to verification in progress
+            statusDiv.innerHTML = `
+                <div class="spinner-border text-primary mb-3" style="width: 2rem; height: 2rem;" role="status"></div>
+                <h5 class="mb-3">Starting Verification...</h5>
+                <p>A camera window will open shortly. Please look at the camera.</p>
+            `;
+            
+            startBtn.disabled = true;
+            
+            try {
+                // Call the verification endpoint
+                const response = await fetch('/verify_hospital_biometric', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        biometric_type: 'face_detection'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show that verification is in progress
+                    statusDiv.innerHTML = `
+                        <div class="alert alert-info">
+                            <h5 class="mb-2">Verification in Progress</h5>
+                            <p>Please look at the camera in the opened window.</p>
+                            <p>The verification result will be updated automatically.</p>
+                            <div class="progress mt-3" style="height: 15px;">
+                                <div id="faceVerifyProgress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Start polling for the verification result
+                    const resultFile = result.result_file;
+                    const pollInterval = setInterval(async () => {
+                        try {
+                            const checkResponse = await fetch('/check_face_verification', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ 
+                                    result_file: resultFile
+                                })
+                            });
+                            
+                            const checkResult = await checkResponse.json();
+                            
+                            // If verification is complete, update UI and resolve promise
+                            if (checkResult.completed) {
+                                clearInterval(pollInterval);
+                                
+                                if (checkResult.success) {
+                                    // Success - update UI and verification button
+                                    statusDiv.innerHTML = `
+                                        <div class="alert alert-success">
+                                            <i class="fas fa-check-circle fa-3x mb-3"></i>
+                                            <h5>Face Verification Successful!</h5>
+                                            <p>Your face has been verified successfully.</p>
+                                            <button class="btn btn-success mt-3" id="faceCompleteBtn">Continue</button>
+                                        </div>
+                                    `;
+                                    
+                                    // Update the verification button
+                                    bioButton.innerHTML = '<i class="fas fa-check-circle me-1"></i> Verified';
+                                    bioButton.classList.remove('btn-outline-primary', 'btn-primary');
+                                    bioButton.classList.add('btn-success');
+                                    
+                                    // Set up continue button
+                                    document.getElementById('faceCompleteBtn').addEventListener('click', function() {
+                                        modalDiv.remove();
+                                        resolve(true);
+                                    });
+                                } else {
+                                    // Failure - show error and retry option
+                                    statusDiv.innerHTML = `
+                                        <div class="alert alert-danger">
+                                            <i class="fas fa-times-circle fa-3x mb-3"></i>
+                                            <h5>Face Verification Failed</h5>
+                                            <p>${checkResult.error || 'Your face could not be verified. Please try again.'}</p>
+                                            <div class="mt-3">
+                                                <button id="faceRetryBtn" class="btn btn-primary me-2">Try Again</button>
+                                                <button id="faceCancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                                            </div>
+                                        </div>
+                                    `;
+                                    
+                                    // Reset the verification button
+                                    bioButton.disabled = false;
+                                    bioButton.innerHTML = 'Verify';
+                                    
+                                    // Set up retry and cancel buttons
+                                    document.getElementById('faceRetryBtn').addEventListener('click', function() {
+                                        modalDiv.remove();
+                                        verifyFaceDetection().then(resolve).catch(reject);
+                                    });
+                                    
+                                    document.getElementById('faceCancelBtn').addEventListener('click', function() {
+                                        modalDiv.remove();
+                                        resolve(false);
+                                    });
+                                }
+                            }
+                        } catch (error) {
+                            console.error('Error checking verification status:', error);
+                        }
+                    }, 2000); // Check every 2 seconds
+                    
+                    // Add a cancel button
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.className = 'btn btn-outline-secondary mt-3';
+                    cancelBtn.innerHTML = 'Cancel Verification';
+                    cancelBtn.addEventListener('click', function() {
+                        clearInterval(pollInterval);
+                        modalDiv.remove();
+                        
+                        // Reset the verification button
+                        bioButton.disabled = false;
+                        bioButton.innerHTML = 'Verify';
+                        
+                        resolve(false);
+                    });
+                    
+                    statusDiv.appendChild(cancelBtn);
+                    
+                } else {
+                    // Show error message if verification couldn't be started
+                    statusDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fas fa-times-circle fa-3x"></i>
+                            <h5 class="mt-3 mb-3">Face Verification Failed</h5>
+                            <p>${result.error || 'Failed to start face verification.'}</p>
+                            <div class="mt-3">
+                                <button id="faceRetryBtn" class="btn btn-primary me-2">Try Again</button>
+                                <button id="faceCancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Reset the verification button
+                    bioButton.disabled = false;
+                    bioButton.innerHTML = 'Verify';
+                    
+                    // Set up retry and cancel buttons
+                    document.getElementById('faceRetryBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        verifyFaceDetection().then(resolve).catch(reject);
+                    });
+                    
+                    document.getElementById('faceCancelBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        resolve(false);
+                    });
+                }
+            } catch (error) {
+                console.error('Verification error:', error);
+                
+                statusDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle fa-3x"></i>
+                        <h5 class="mt-3 mb-3">Verification Error</h5>
+                        <p>An error occurred: ${error.message || 'Unknown error'}</p>
+                        <div class="mt-3">
+                            <button id="faceRetryBtn" class="btn btn-primary me-2">Try Again</button>
+                            <button id="faceCancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Reset the verification button
+                bioButton.disabled = false;
+                bioButton.innerHTML = 'Verify';
+                
+                // Set up retry and cancel buttons
+                document.getElementById('faceRetryBtn').addEventListener('click', function() {
+                    modalDiv.remove();
+                    verifyFaceDetection().then(resolve).catch(reject);
+                });
+                
+                document.getElementById('faceCancelBtn').addEventListener('click', function() {
+                    modalDiv.remove();
+                    resolve(false);
+                });
+            }
+        });
+        
+        // Add a close button to the modal
+        const closeButton = document.createElement('button');
+        closeButton.className = 'btn btn-outline-secondary';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '10px';
+        closeButton.style.right = '10px';
+        closeButton.innerHTML = '<i class="fas fa-times"></i>';
+        closeButton.addEventListener('click', function() {
+            modalDiv.remove();
+            bioButton.disabled = false;
+            bioButton.innerHTML = 'Verify';
+            resolve(false);
+        });
+        
+        modalDiv.querySelector('div').appendChild(closeButton);
+    });
+}
+
+// Updated Eye Blink verification function with better error handling
+async function verifyEyeBlink() {
+    const bioButton = document.querySelector('.verify-button[data-bio-type="eyeblink"]');
+    bioButton.disabled = true;
+    bioButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Verifying...';
+    
+    // Create a modal for eye blink verification
+    const modalDiv = document.createElement('div');
+    modalDiv.id = 'eyeblinkVerifyModal';
+    modalDiv.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    `;
+    
+    modalDiv.innerHTML = `
+        <div style="background-color: white; border-radius: 8px; padding: 25px; max-width: 600px; width: 90%;">
+            <div style="text-align: center;">
+                <h4 class="mb-3">Eye Blink Verification</h4>
+                <p>Click the button below to start eye blink verification.</p>
+                <p>A camera window will open in a separate window to verify your eye blink pattern.</p>
+                <button id="startEyeBlinkBtn" class="btn btn-primary mt-3 mb-3">
+                    <i class="fas fa-eye me-2"></i>Start Eye Blink Verification
+                </button>
+                <div id="eyeBlinkStatus" class="mt-3">
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modalDiv);
+    
+    // Return a Promise to handle the verification result
+    return new Promise((resolve, reject) => {
+        document.getElementById('startEyeBlinkBtn').addEventListener('click', async function() {
+            const statusDiv = document.getElementById('eyeBlinkStatus');
+            const startBtn = document.getElementById('startEyeBlinkBtn');
+            
+            // Update status to verification in progress
+            statusDiv.innerHTML = `
+                <div class="spinner-border text-primary mb-3" style="width: 2rem; height: 2rem;" role="status"></div>
+                <h5 class="mb-3">Starting Verification...</h5>
+                <p>A camera window will open shortly. Please follow the on-screen instructions to perform your eye blink pattern.</p>
+            `;
+            
+            startBtn.disabled = true;
+            
+            try {
+                // Call the verification endpoint
+                const response = await fetch('/verify_hospital_biometric', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        biometric_type: 'eyeblink'
+                    })
+                });
+                
+                // Check if response is valid before trying to parse JSON
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+                }
+                
+                // Get response text first to check if it's valid JSON
+                const responseText = await response.text();
+                let result;
+                
+                try {
+                    result = JSON.parse(responseText);
+                } catch (jsonError) {
+                    console.error('Invalid JSON response:', responseText);
+                    throw new Error('Server returned invalid JSON response');
+                }
+                
+                if (result.success) {
+                    statusDiv.innerHTML = `
+                        <div class="text-center">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px;">
+                                <i class="fas fa-check" style="color: white; font-size: 40px;"></i>
+                            </div>
+                            <h4>Eye Blink Pattern Verified!</h4>
+                            <button id="eyeBlinkContinueBtn" class="btn btn-success mt-4">Continue</button>
+                        </div>
+                    `;
+                    
+                    // Update the verification button to show success
+                    bioButton.innerHTML = '<i class="fas fa-check-circle me-1"></i> Verified';
+                    bioButton.classList.remove('btn-outline-primary');
+                    bioButton.classList.add('btn-success');
+                    
+                    // Set up continue button
+                    document.getElementById('eyeBlinkContinueBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        resolve(true);
+                    });
+                } else {
+                    statusDiv.innerHTML = `
+                        <div class="text-center">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px;">
+                                <i class="fas fa-times" style="color: white; font-size: 40px;"></i>
+                            </div>
+                            <h4>Verification Failed</h4>
+                            <p>${result.error || 'Your eye blink pattern could not be verified.'}</p>
+                            <div class="d-flex justify-content-center gap-2 mt-4">
+                                <button id="eyeBlinkRetryBtn" class="btn btn-primary">Try Again</button>
+                                <button id="eyeBlinkCancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Reset the verification button
+                    bioButton.disabled = false;
+                    bioButton.innerHTML = 'Verify';
+                    
+                    // Set up retry and cancel buttons
+                    document.getElementById('eyeBlinkRetryBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        verifyEyeBlink().then(resolve).catch(reject);
+                    });
+                    
+                    document.getElementById('eyeBlinkCancelBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        resolve(false);
+                    });
+                }
+            } catch (error) {
+                console.error('Eye blink verification error:', error);
+                
+                statusDiv.innerHTML = `
+                    <div class="text-center">
+                        <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px;">
+                            <i class="fas fa-exclamation-triangle" style="color: white; font-size: 40px;"></i>
+                        </div>
+                        <h4>Error During Verification</h4>
+                        <p>${error.message || "An unexpected error occurred"}</p>
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <button id="eyeBlinkRetryBtn" class="btn btn-primary">Try Again</button>
+                            <button id="eyeBlinkCancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Reset the button
+                bioButton.disabled = false;
+                bioButton.innerHTML = 'Verify';
+                
+                // Set up retry and cancel buttons
+                document.getElementById('eyeBlinkRetryBtn').addEventListener('click', function() {
+                    modalDiv.remove();
+                    verifyEyeBlink().then(resolve).catch(reject);
+                });
+                
+                document.getElementById('eyeBlinkCancelBtn').addEventListener('click', function() {
+                    modalDiv.remove();
+                    resolve(false);
+                });
+            }
+        });
+        
+        // Add a close button to the modal
+        const closeButton = document.createElement('button');
+        closeButton.className = 'btn btn-outline-secondary';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '10px';
+        closeButton.style.right = '10px';
+        closeButton.innerHTML = '<i class="fas fa-times"></i>';
+        closeButton.addEventListener('click', function() {
+            modalDiv.remove();
+            bioButton.disabled = false;
+            bioButton.innerHTML = 'Verify';
+            resolve(false);
+        });
+        
+        modalDiv.querySelector('div').appendChild(closeButton);
+    });
+}
+
+// Neck movement verification - Updated to match open_file.html implementation
+async function verifyNeckMovement() {
+    const bioButton = document.querySelector('.verify-button[data-bio-type="neck_movement"]');
+    bioButton.disabled = true;
+    bioButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Verifying...';
+    
+    return new Promise((resolve, reject) => {
+        // Create a modal for neck movement verification
+        const modalDiv = document.createElement('div');
+        modalDiv.id = 'neckMovementVerifyModal';
+        modalDiv.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        `;
+        
+        modalDiv.innerHTML = `
+            <div style="background-color: white; border-radius: 8px; padding: 25px; max-width: 600px; width: 90%;">
+                <div style="text-align: center;">
+                    <h4 style="color: #333; margin-bottom: 20px;">Neck Movement Verification</h4>
+                    
+                    <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-left: 5px solid #007bff;">
+                        <p style="font-size: 1.1rem;">Please reproduce your neck movement pattern</p>
+                        <p style="color: #555;">Move your head in the pattern you recorded during enrollment.</p>
+                    </div>
+                    
+                    <div id="neckVerifyStatus" style="min-height: 150px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <button id="startNeckVerifyBtn" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play me-2"></i>Start Verification
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modalDiv);
+        
+        document.getElementById('startNeckVerifyBtn').addEventListener('click', async function() {
+            const statusDiv = document.getElementById('neckVerifyStatus');
+            
+            // Update status to recording
+            statusDiv.innerHTML = `
+                <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                <h5 class="mb-3">Initializing Camera...</h5>
+                <p>A camera window will open. Please follow the instructions to verify your neck movement pattern.</p>
+            `;
+            
+            try {
+                // Call the verification endpoint
+                const response = await fetch('/verify_hospital_biometric', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        biometric_type: 'neck_movement'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    statusDiv.innerHTML = `
+                        <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                            <i class="fas fa-check fa-3x" style="color: white;"></i>
+                        </div>
+                        <h4>Pattern Verified!</h4>
+                        <p>Your neck movement pattern has been verified successfully.</p>
+                        <button id="neckContinueBtn" class="btn btn-success mt-4">Continue</button>
+                    `;
+                    
+                    // Update the verification button to show success
+                    bioButton.innerHTML = '<i class="fas fa-check-circle me-1"></i> Verified';
+                    bioButton.classList.remove('btn-outline-primary');
+                    bioButton.classList.add('btn-success');
+                    
+                    // Set up continue button
+                    document.getElementById('neckContinueBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        resolve(true);
+                    });
+                } else {
+                    // Show failure message
+                    statusDiv.innerHTML = `
+                        <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                            <i class="fas fa-times fa-3x" style="color: white;"></i>
+                        </div>
+                        <h4>Verification Failed</h4>
+                        <p>${result.message || "Your neck movement pattern could not be verified."}</p>
+                        <div class="d-flex mt-4">
+                            <button id="neckRetryBtn" class="btn btn-primary me-2">Try Again</button>
+                            <button id="neckCancelBtn" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    `;
+                    
+                    // Update button to show failure
+                    bioButton.disabled = false;
+                    bioButton.innerHTML = '<i class="fas fa-times-circle me-1"></i> Failed';
+                    bioButton.classList.remove('btn-outline-primary');
+                    bioButton.classList.add('btn-danger');
+                    
+                    // Reset button after delay
+                    setTimeout(() => {
+                        bioButton.classList.remove('btn-danger');
+                        bioButton.classList.add('btn-outline-primary');
+                        bioButton.innerHTML = 'Verify';
+                    }, 2000);
+                    
+                    // Set up retry and cancel buttons
+                    document.getElementById('neckRetryBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        verifyNeckMovement().then(resolve).catch(reject);
+                    });
+                    
+                    document.getElementById('neckCancelBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        resolve(false);
+                    });
+                }
+            } catch (error) {
+                console.error('Verification error:', error);
+                
+                statusDiv.innerHTML = `
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                        <i class="fas fa-exclamation-triangle fa-3x" style="color: white;"></i>
+                    </div>
+                    <h4>Error During Verification</h4>
+                    <p>${error.message || "An unexpected error occurred"}</p>
+                    <div class="d-flex mt-4">
+                        <button id="neckRetryBtn" class="btn btn-primary me-2">Try Again</button>
+                        <button id="neckCancelBtn" class="btn btn-secondary">Cancel</button>
+                    </div>
+                `;
+                
+                // Reset the button
+                bioButton.disabled = false;
+                bioButton.innerHTML = 'Verify';
+                
+                // Set up retry and cancel buttons
+                document.getElementById('neckRetryBtn').addEventListener('click', function() {
+                    modalDiv.remove();
+                    verifyNeckMovement().then(resolve).catch(reject);
+                });
+                
+                document.getElementById('neckCancelBtn').addEventListener('click', function() {
+                    modalDiv.remove();
+                    resolve(false);
+                });
+            }
+        });
+        
+        // Add a close button to the modal
+        const closeButton = document.createElement('button');
+        closeButton.className = 'btn btn-outline-secondary';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '10px';
+        closeButton.style.right = '10px';
+        closeButton.innerHTML = '<i class="fas fa-times"></i>';
+        closeButton.addEventListener('click', function() {
+            modalDiv.remove();
+            bioButton.disabled = false;
+            bioButton.innerHTML = 'Verify';
+            resolve(false);
+        });
+        
+        modalDiv.querySelector('div').appendChild(closeButton);
+    });
+}
+
+// Updated Voice verification function to show scores for both success and failure cases
+async function verifyVoice() {
+    const bioButton = document.querySelector('.verify-button[data-bio-type="voice"]');
+    bioButton.disabled = true;
+    bioButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Verifying...';
+    
+    // Create a modal with a cleaner UI for voice verification
+    const modalDiv = document.createElement('div');
+    modalDiv.id = 'voiceVerifyModal';
+    modalDiv.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    `;
+    
+    modalDiv.innerHTML = `
+        <div style="background-color: white; border-radius: 8px; padding: 25px; max-width: 600px; width: 90%;">
+            <div style="text-align: center;">
+                <h4 style="color: #333; margin-bottom: 20px;">Voice Verification</h4>
+                
+                <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-left: 5px solid #007bff;">
+                    <p style="font-weight: bold; font-size: 1.2rem; color: #007bff; margin-bottom: 5px;">Please say clearly:</p>
+                    <p style="font-size: 1.1rem; font-weight: bold;">"I let the positive overrun the negative"</p>
+                </div>
+                
+                <div id="voiceVerifyStatus" style="min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <p>You will need to record this phrase 2 times for verification</p>
+                    <button id="startVoiceVerifyBtn" class="btn btn-primary btn-lg mt-3">
+                        <i class="fas fa-microphone me-2"></i>Start Verification
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modalDiv);
+    
+    // Handle verification process
+    try {
+        await new Promise((resolve, reject) => {
+            document.getElementById('startVoiceVerifyBtn').addEventListener('click', async function() {
+                const statusDiv = document.getElementById('voiceVerifyStatus');
+                
+                // For each of the 2 verification samples
+                for (let sampleNumber = 1; sampleNumber <= 2; sampleNumber++) {
+                    statusDiv.innerHTML = `
+                        <h5 class="mb-3">Recording Sample ${sampleNumber}/2</h5>
+                        
+                        <div id="countdownBox" style="margin: 20px auto; width: 100px; height: 100px; border-radius: 50%; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: bold; color: #007bff;">
+                            3
+                        </div>
+                        
+                        <div id="recordingIndicator" style="display: none; margin: 20px auto; width: 100%;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                <div class="recording-dot" style="width: 24px; height: 24px; background-color: red; border-radius: 50%; margin-right: 10px; animation: pulse 1s infinite;"></div>
+                                <span style="font-weight: bold; font-size: 1.2rem;">Recording...</span>
+                            </div>
+                            <div id="progressBar" style="width: 100%; height: 10px; background-color: #f0f0f0; border-radius: 5px; overflow: hidden;">
+                                <div id="progressFill" style="width: 0%; height: 100%; background-color: #007bff; transition: width 0.1s linear;"></div>
+                            </div>
+                            <p id="timeRemaining" style="margin-top: 5px; font-size: 0.9rem; color: #555;">0/5 seconds</p>
+                        </div>
+                    `;
+                    
+                    // Apply pulse animation if not already added
+                    if (!document.querySelector('style[data-voice-verify="true"]')) {
+                        const style = document.createElement('style');
+                        style.setAttribute('data-voice-verify', 'true');
+                        style.textContent = `
+                            @keyframes pulse {
+                                0% { opacity: 1; }
+                                50% { opacity: 0.5; }
+                                100% { opacity: 1; }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    // Run countdown
+                    const countdownBox = document.getElementById('countdownBox');
+                    const recordingIndicator = document.getElementById('recordingIndicator');
+                    
+                    for (let i = 3; i > 0; i--) {
+                        countdownBox.textContent = i;
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                    }
+                    
+                    // Show "GO" before starting
+                    countdownBox.textContent = "GO!";
+                    countdownBox.style.backgroundColor = "#28a745";
+                    countdownBox.style.color = "white";
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    
+                    // Hide countdown, show recording
+                    countdownBox.style.display = "none";
+                    recordingIndicator.style.display = "block";
+                    
+                    // Update progress bar during recording
+                    const progressFill = document.getElementById('progressFill');
+                    const timeRemaining = document.getElementById('timeRemaining');
+                    
+                    // Call the voice verification sample endpoint
+                    const verifyPromise = fetch('/voice_verify_sample', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            sample_number: sampleNumber
+                        })
+                    });
+                    
+                    // Show progress while recording happens
+                    for (let i = 0; i <= 50; i++) {
+                        const percent = i * 2;
+                        progressFill.style.width = `${percent}%`;
+                        timeRemaining.textContent = `${Math.floor(i/10)}/5 seconds`;
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                    }
+                    
+                    // Show processing
+                    statusDiv.innerHTML = `
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2">Processing recording ${sampleNumber}...</p>
+                    `;
+                    
+                    // Wait for the recording to finish
+                    await verifyPromise;
+                    
+                    // Show success for this sample
+                    statusDiv.innerHTML = `
+                        <div class="alert alert-success mb-4" style="width: 100%;">
+                            <i class="fas fa-check-circle me-2"></i>Sample ${sampleNumber} recorded successfully
+                        </div>
+                    `;
+                    
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+                
+                // All samples recorded, now verify
+                statusDiv.innerHTML = `
+                    <div class="spinner-border text-primary mb-3" role="status"></div>
+                    <h5>Analyzing Voice Pattern...</h5>
+                    <div class="progress mt-3" style="height: 10px; width: 100%;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                    </div>
+                `;
+                
+                // Make the actual verification call
+                try {
+                    const response = await fetch('/verify_hospital_biometric', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            biometric_type: 'voice'
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    console.log("Voice verification result:", result);
+                    
+                    // Get the score and threshold values from the result
+                    const avgScore = result.avg_score !== undefined ? 
+                        parseFloat(result.avg_score).toFixed(2) : "N/A";
+                    const threshold = result.threshold !== undefined ? 
+                        parseFloat(result.threshold).toFixed(2) : "N/A";
+                    
+                    if (result.success) {
+                        statusDiv.innerHTML = `
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                <i class="fas fa-check fa-3x" style="color: white;"></i>
+                            </div>
+                            <h4>Verification Successful!</h4>
+                            <p class="text-success mb-2">Your voice has been verified</p>
+                            <div class="p-3 mb-3" style="background-color: #f8f9fa; border-radius: 8px; text-align: left;">
+                                <p class="mb-1"><strong>Match Score:</strong> ${avgScore}</p>
+                                <p class="mb-0"><strong>Threshold:</strong> ${threshold}</p>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar bg-success" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <button id="continueBtn" class="btn btn-primary">Continue</button>
+                        `;
+                        
+                        document.getElementById('continueBtn').addEventListener('click', function() {
+                            modalDiv.remove();
+                            resolve(true);
+                        });
+                    } else {
+                        statusDiv.innerHTML = `
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                <i class="fas fa-times fa-3x" style="color: white;"></i>
+                            </div>
+                            <h4>Verification Failed</h4>
+                            <p class="text-danger mb-2">Voice pattern doesn't match</p>
+                            <div class="p-3 mb-3" style="background-color: #f8f9fa; border-radius: 8px; text-align: left;">
+                                <p class="mb-1"><strong>Your Score:</strong> ${avgScore}</p>
+                                <p class="mb-1"><strong>Required Threshold:</strong> ${threshold}</p>
+                                <p class="text-muted"><small>Your score must be greater than the threshold to pass</small></p>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar bg-danger" style="width: ${Math.min(Math.abs(avgScore/threshold) * 100, 100)}%"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button id="retryBtn" class="btn btn-primary me-2">Try Again</button>
+                                <button id="cancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                            </div>
+                        `;
+                        
+                        document.getElementById('retryBtn').addEventListener('click', function() {
+                            modalDiv.remove();
+                            verifyVoice();
+                        });
+                        
+                        document.getElementById('cancelBtn').addEventListener('click', function() {
+                            modalDiv.remove();
+                            reject(new Error('Voice verification canceled'));
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error during voice verification:", error);
+                    statusDiv.innerHTML = `
+                        <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                            <i class="fas fa-times fa-3x" style="color: white;"></i>
+                        </div>
+                        <h4>Verification Error</h4>
+                        <p class="text-danger mb-4">An error occurred during verification</p>
+                        <div class="d-flex justify-content-center">
+                            <button id="retryBtn" class="btn btn-primary me-2">Try Again</button>
+                            <button id="cancelBtn" class="btn btn-outline-secondary">Cancel</button>
+                        </div>
+                    `;
+                    
+                    document.getElementById('retryBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        verifyVoice();
+                    });
+                    
+                    document.getElementById('cancelBtn').addEventListener('click', function() {
+                        modalDiv.remove();
+                        reject(new Error('Voice verification canceled due to error'));
+                    });
+                }
+            });
+        });
+        
+        // Update the verification button to show success
+        bioButton.innerHTML = '<i class="fas fa-check-circle me-1"></i> Verified';
+        bioButton.classList.remove('btn-outline-primary');
+        bioButton.classList.add('btn-success');
+        return true;
+        
+    } catch (error) {
+        console.error('Voice verification error:', error);
+        
+        // Update button to show failure
+        bioButton.disabled = false;
+        bioButton.innerHTML = '<i class="fas fa-times-circle me-1"></i> Failed';
+        bioButton.classList.remove('btn-outline-primary');
+        bioButton.classList.add('btn-danger');
+        
+        // Reset button after delay
+        setTimeout(() => {
+            bioButton.classList.remove('btn-danger');
+            bioButton.classList.add('btn-outline-primary');
+            bioButton.innerHTML = 'Verify';
+            bioButton.disabled = false;
+        }, 2000);
+        
+        return false;
+    }
+}
+</script>
+{% endblock %}

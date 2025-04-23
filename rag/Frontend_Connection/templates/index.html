@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediGuard - Medical RAG System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-shield-virus logo-icon"></i>
+                <h1>MediGuard</h1>
+            </div>
+            <p class="mediguard-tagline">Advanced Medical Intelligence System</p>
+        </header>
+
+        <!-- Flash messages -->
+        <div class="flash-messages">
+            {% for message in get_flashed_messages() %}
+                <div class="flash-message">
+                    <i class="fas fa-info-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="two-columns">
+            <!-- Document Upload Section -->
+            <div class="card">
+                <h2><i class="fas fa-file-medical card-icon"></i> Upload Medical Documents</h2>
+                <form action="{{ url_for('upload_document') }}" method="post" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <label for="file">Select medical PDF file:</label>
+                        <input type="file" name="file" id="file" accept=".pdf" required>
+                        <span class="file-label">No file selected</span>
+                    </div>
+                    <input type="submit" value="Upload and Process">
+                </form>
+                
+                <!-- Current Documents -->
+                <div class="section-divider"></div>
+                <h3><i class="fas fa-folder-open"></i> Current Medical Resources</h3>
+                {% if documents %}
+                    <ul class="document-list">
+                        {% for document in documents %}
+                            <li>{{ document }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No medical documents uploaded yet.</p>
+                {% endif %}
+                
+                <!-- Reset Database Button -->
+                <form action="{{ url_for('reset_db') }}" method="post" onsubmit="return confirm('Are you sure you want to reset the medical database? This will delete all processed documents.')">
+                    <button type="submit" class="danger">
+                        <i class="fas fa-trash"></i> Reset Database
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Query Section -->
+            <div class="card">
+                <h2><i class="fas fa-search-plus card-icon"></i> Medical Query System</h2>
+
+                <!-- Query Type Options -->
+                <div class="query-options">
+                    <div class="query-option selected" data-type="disease">
+                        <div class="query-option-icon"><i class="fas fa-disease"></i></div>
+                        <div>Disease ID</div>
+                    </div>
+                    <div class="query-option" data-type="recovery">
+                        <div class="query-option-icon"><i class="fas fa-heartbeat"></i></div>
+                        <div>Recovery</div>
+                    </div>
+                    <div class="query-option" data-type="resources">
+                        <div class="query-option-icon"><i class="fas fa-hospital"></i></div>
+                        <div>Resources</div>
+                    </div>
+                    <div class="query-option" data-type="general">
+                        <div class="query-option-icon"><i class="fas fa-notes-medical"></i></div>
+                        <div>General</div>
+                    </div>
+                </div>
+                
+                <!-- Medical Query Form -->
+                <form id="medical-form">
+                    <input type="hidden" id="query-type" value="disease">
+                    
+                    <div class="form-row">
+                        <label for="symptoms-input">Patient Symptoms:</label>
+                        <textarea id="symptoms-input" rows="3" placeholder="Describe the symptoms..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="patient-details-input">Patient Details (age, history, etc):</label>
+                        <textarea id="patient-details-input" rows="3" placeholder="Add relevant patient information..."></textarea>
+                    </div>
+                    
+                    <button id="submit-query" type="button">
+                        <i class="fas fa-search"></i> Analyze Medical Case
+                    </button>
+                </form>
+                
+                <!-- General Query Form (hidden by default) -->
+                <form id="general-form" style="display: none;">
+                    <div class="form-row">
+                        <label for="query-input">Enter your medical question:</label>
+                        <textarea id="query-input" rows="3" placeholder="Ask something about the medical documents..."></textarea>
+                    </div>
+                    <button id="submit-general-query" type="button">
+                        <i class="fas fa-paper-plane"></i> Submit Query
+                    </button>
+                </form>
+                
+                <div class="loader" id="query-loader"></div>
+                <div id="result-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

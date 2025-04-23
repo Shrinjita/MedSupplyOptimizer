@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}Reset Biometrics - SecureBlink{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0 text-center">Reset Biometrics</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="feature-icon mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h4>Update Your Biometric Security</h4>
+                    <p class="text-muted">Select which biometric verification method you want to reset</p>
+                </div>
+                
+                {% if biometrics %}
+                    <div class="row mb-4">
+                        {% if 'fingerprint' in biometrics %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-fingerprint fa-3x mb-3" style="color: var(--primary);"></i>
+                                    <h5>Fingerprint</h5>
+                                    <div class="mt-3">
+                                        <a href="{{ url_for('reset_bio', bio_type='fingerprint') }}" class="btn btn-outline-primary">
+                                            Reset
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if 'eyeblink' in biometrics %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-eye fa-3x mb-3" style="color: var(--primary);"></i>
+                                    <h5>Eye Blink</h5>
+                                    <div class="mt-3">
+                                        <a href="{{ url_for('reset_bio', bio_type='eyeblink') }}" class="btn btn-outline-primary">
+                                            Reset
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if 'neck_movement' in biometrics %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-head-side-mask fa-3x mb-3" style="color: var(--primary);"></i>
+                                    <h5>Neck Movement</h5>
+                                    <div class="mt-3">
+                                        <a href="{{ url_for('reset_bio', bio_type='neck_movement') }}" class="btn btn-outline-primary">
+                                            Reset
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if 'voice' in biometrics %}
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-microphone fa-3x mb-3" style="color: var(--primary);"></i>
+                                    <h5>Voice Recognition</h5>
+                                    <div class="mt-3">
+                                        <a href="{{ url_for('reset_bio', bio_type='voice') }}" class="btn btn-outline-primary">
+                                            Reset
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if 'face_detection' in biometrics %}
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user fa-3x mb-3" style="color: var(--primary);"></i>
+                                    <h5>Face Detection</h5>
+                                    <div class="mt-3">
+                                        <a href="{{ url_for('reset_bio', bio_type='face_detection') }}" class="btn btn-outline-primary">
+                                            Reset
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        You haven't set up any biometrics yet. <a href="{{ url_for('add_biometrics') }}" class="alert-link">Set up now</a>.
+                    </div>
+                {% endif %}
+                
+                <div class="text-center mt-3">
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

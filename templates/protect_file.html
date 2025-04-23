@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block title %}Protect File - SecureBlink{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0 text-center">Protect a File</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('protect_file') }}" enctype="multipart/form-data">
+                    <!-- Hidden field to store temporary file path from server -->
+                    <input type="hidden" id="temp-file-path" name="file_path" value="">
+                    
+                    <div class="mb-4">
+                        <label for="file-input" class="form-label">
+                            <i class="fas fa-file me-2"></i>Select File
+                        </label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="file-input" name="file">
+                        </div>
+                        <div class="form-text">Choose the file you want to protect with biometric security.</div>
+                        <div id="upload-status" class="small mt-2 text-muted" style="display: none;">
+                            <div class="spinner-border spinner-border-sm text-primary me-1" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <span>Uploading file...</span>
+                        </div>
+                        <div id="upload-success" class="small mt-2 text-success" style="display: none;">
+                            <i class="fas fa-check-circle me-1"></i> File uploaded successfully
+                        </div>
+                        <div id="upload-error" class="small mt-2 text-danger" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Security Methods</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted mb-3">Select which security measures will be required to access this file:</p>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="require_pin" name="require_pin" checked>
+                                <label class="form-check-label" for="require_pin">
+                                    <i class="fas fa-key me-2"></i>Require PIN
+                                </label>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="require_fingerprint" name="require_fingerprint">
+                                <label class="form-check-label" for="require_fingerprint">
+                                    <i class="fas fa-fingerprint me-2"></i>Fingerprint Verification
+                                </label>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="require_eyeblink" name="require_eyeblink">
+                                <label class="form-check-label" for="require_eyeblink">
+                                    <i class="fas fa-eye me-2"></i>Eye Blink Verification
+                                </label>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="require_neck_movement" name="require_neck_movement">
+                                <label class="form-check-label" for="require_neck_movement">
+                                    <i class="fas fa-head-side me-2"></i>Neck Movement Verification
+                                </label>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="require_voice" name="require_voice">
+                                <label class="form-check-label" for="require_voice">
+                                    <i class="fas fa-microphone me-2"></i>Voice Verification
+                                </label>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="require_face_detection" name="require_face_detection">
+                                <label class="form-check-label" for="require_face_detection">
+                                    <i class="fas fa-user me-2"></i>Face Detection
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg" id="protect-button">
+                            <i class="fas fa-shield-alt me-2"></i>Protect File
+                        </button>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.getElementById('file-input');
+        const tempFilePathInput = document.getElementById('temp-file-path');
+        const uploadStatus = document.getElementById('upload-status');
+        const uploadSuccess = document.getElementById('upload-success');
+        const uploadError = document.getElementById('upload-error');
+        const protectButton = document.getElementById('protect-button');
+        
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                // Show upload status
+                uploadStatus.style.display = 'block';
+                uploadSuccess.style.display = 'none';
+                uploadError.style.display = 'none';
+                
+                // Create form data object
+                const formData = new FormData();
+                formData.append('file', this.files[0]);
+                
+                // Send file to server
+                fetch('{{ url_for("upload_temp_file") }}', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    uploadStatus.style.display = 'none';
+                    
+                    if (data.success) {
+                        // Store the server path in hidden input
+                        tempFilePathInput.value = data.server_path;
+                        uploadSuccess.style.display = 'block';
+                        console.log('File uploaded to temporary path:', data.server_path);
+                    } else {
+                        // Show error
+                        uploadError.textContent = data.error || 'Unknown error uploading file';
+                        uploadError.style.display = 'block';
+                        console.error('Upload error:', data.error);
+                    }
+                })
+                .catch(error => {
+                    uploadStatus.style.display = 'none';
+                    uploadError.textContent = 'Network error uploading file';
+                    uploadError.style.display = 'block';
+                    console.error('Fetch error:', error);
+                });
+            }
+        });
+        
+        // Add form submission validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            // Check if we have a valid file path
+            if (!tempFilePathInput.value) {
+                // Check if a file was selected but not yet uploaded
+                if (fileInput.files && fileInput.files.length > 0) {
+                    e.preventDefault();
+                    alert('Please wait for the file upload to complete');
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

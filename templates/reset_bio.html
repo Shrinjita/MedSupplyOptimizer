@@ -1,0 +1,1180 @@
+{% extends 'base.html' %}
+
+{% block title %}Reset {{ bio_type|replace('_', ' ')|title }} - SecureBlink{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0 text-center">Reset {{ bio_type|replace('_', ' ')|title }}</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    {% if bio_type == 'fingerprint' %}
+                        <i class="fas fa-fingerprint fa-3x mb-3" style="color: var(--primary);"></i>
+                    {% elif bio_type == 'eyeblink' %}
+                        <i class="fas fa-eye fa-3x mb-3" style="color: var(--primary);"></i>
+                    {% elif bio_type == 'neck_movement' %}
+                        <i class="fas fa-head-side-mask fa-3x mb-3" style="color: var(--primary);"></i>
+                    {% elif bio_type == 'voice' %}
+                        <i class="fas fa-microphone fa-3x mb-3" style="color: var(--primary);"></i>
+                    {% elif bio_type == 'face_detection' %}
+                        <i class="fas fa-user fa-3x mb-3" style="color: var(--primary);"></i>
+                    {% endif %}
+                    
+                    <h4>Updating {{ bio_type|replace('_', ' ')|title }} Biometric</h4>
+                    <p class="text-muted">Follow the instructions to capture your new biometric data</p>
+                </div>
+                
+                
+                <form method="POST" action="{{ url_for('reset_bio', bio_type=bio_type) }}" class="mt-4">
+                    <div class="text-center mb-4">
+                        <div id="captureBox" class="mx-auto" style="width: 800px; height: 520px; border: 3px solid var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; background-color: #1e1e1e;">
+                            {% if bio_type == 'eyeblink' %}
+                                <div id="videoContainer" style="display: none; width: 100%; height: 100%; background-color: #1e1e1e; border-radius: 8px; overflow: hidden;">
+                                    <img id="cameraFeed" src="/video_feed" alt="Camera Feed" style="width: 100%; height: 100%; object-fit: contain;">
+                                    <div class="camera-overlay text-white p-3" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7);">
+                                        <p class="mb-0"><i class="fas fa-eye me-2"></i>Look at the camera and blink in your pattern</p>
+                                    </div>
+                                </div>
+                                <div id="captureIcon">
+                                    <i class="fas fa-eye fa-4x" style="color: var(--primary);"></i>
+                                </div>
+                            {% else %}
+                                <div id="captureIcon">
+                                    {% if bio_type == 'fingerprint' %}
+                                        <i class="fas fa-fingerprint fa-4x" style="color: var(--primary);"></i>
+                                    {% elif bio_type == 'neck_movement' %}
+                                        <i class="fas fa-head-side-mask fa-4x" style="color: var(--primary);"></i>
+                                    {% elif bio_type == 'voice' %}
+                                        <i class="fas fa-microphone fa-4x" style="color: var(--primary);"></i>
+                                    {% elif bio_type == 'face_detection' %}
+                                        <i class="fas fa-user fa-4x" style="color: var(--primary);"></i>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="button" id="captureBtn" class="btn btn-primary">
+                            <i class="fas fa-camera me-2"></i>Start Recording
+                        </button>
+                    </div>
+
+                    <!-- Make sure the hidden input field is correctly named -->
+                    <input type="hidden" name="{{ bio_type }}" id="biometricData">
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-success btn-lg" id="saveBtn" disabled>
+                            <i class="fas fa-save me-2"></i>Save New Biometric
+                        </button>
+                        <a href="{{ url_for('reset_biometrics') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if bio_type == 'eyeblink' %}
+<script>
+document.getElementById('captureBtn').addEventListener('click', async function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    captureBtn.disabled = true;
+    
+    try {
+        // Show a message while recording is in progress - with better contrast
+        captureBox.innerHTML = `
+            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                <h4 class="mb-3" style="color: black;">Recording Eye Blink Pattern</h4>
+                <p style="color: black;">A camera window has opened. Please look at the camera and blink your eyes to record a pattern.</p>
+                <p style="color: #555;">The window will close automatically when recording is complete.</p>
+            </div>
+        `;
+        
+        // Start the recording process - this will open a popup window
+        const response = await fetch('/record_biometric', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                biometric_type: 'eyeblink'
+            })
+        });
+        
+        const result = await response.json();
+        
+        // Update the eyeblink script
+
+        if (result.success) {
+            document.getElementById('biometricData').value = result.code;
+            captureBox.innerHTML = `
+                <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                    <i class="fas fa-check-circle fa-4x" style="color: var(--success);"></i>
+                    <h4 class="mt-3" style="color: black;">Eye blink pattern recorded successfully!</h4>
+                    
+                    <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                        <h5 style="color: black;">Your pattern:</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <span class="badge bg-primary p-2 mx-1" style="font-size: 1.1rem;">Code: ${result.code}</span>
+                        </div>
+                        <p class="mt-2" style="color: #333; font-weight: bold; font-size: 1.1rem;">${result.display}</p>
+                    </div>
+                    
+                    <button id="retakeBtn" class="btn btn-outline-secondary mt-3">
+                        <i class="fas fa-redo me-2"></i>Retake
+                    </button>
+                    
+                    <p class="mt-3 text-muted">Click "Save New Biometric" below to confirm this pattern.</p>
+                </div>`;
+            
+            // Enable save button directly (no continue button approach)
+            saveBtn.disabled = false;
+            
+            // Set up retake functionality
+            document.getElementById('retakeBtn').addEventListener('click', async function() {
+                // Disable save button during retake
+                saveBtn.disabled = true;
+                
+                // Show recording in progress message
+                captureBox.innerHTML = `
+                    <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                        <h4 class="mb-3" style="color: black;">Recording Eye Blink Pattern</h4>
+                        <p style="color: black;">A camera window has opened. Please look at the camera and blink your eyes to record a pattern.</p>
+                        <p style="color: #555;">The window will close automatically when recording is complete.</p>
+                    </div>
+                `;
+                
+                // Start the recording process again
+                try {
+                    const response = await fetch('/record_biometric', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ 
+                            biometric_type: 'eyeblink'
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    // Show the new pattern and enable save
+                    if (result.success) {
+                        document.getElementById('biometricData').value = result.code;
+                        captureBox.innerHTML = `
+                            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                                <i class="fas fa-check-circle fa-4x" style="color: var(--success);"></i>
+                                <h4 class="mt-3" style="color: black;">Eye blink pattern recorded successfully!</h4>
+                                
+                                <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                                    <h5 style="color: black;">Your pattern:</h5>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="badge bg-primary p-2 mx-1" style="font-size: 1.1rem;">Code: ${result.code}</span>
+                                    </div>
+                                    <p class="mt-2" style="color: #333; font-weight: bold; font-size: 1.1rem;">${result.display}</p>
+                                </div>
+                                
+                                <button id="retakeBtn" class="btn btn-outline-secondary mt-3">
+                                    <i class="fas fa-redo me-2"></i>Retake
+                                </button>
+                                
+                                <p class="mt-3 text-muted">Click "Save New Biometric" below to confirm this pattern.</p>
+                            </div>`;
+                        
+                        saveBtn.disabled = false;
+                        
+                        // Set up retake button for new result
+                        document.getElementById('retakeBtn').addEventListener('click', function() {
+                            // Use the same retake function recursively
+                            document.getElementById('retakeBtn').click();
+                        });
+                    } else {
+                        // Show default pattern
+                        document.getElementById('biometricData').value = 'LB';
+                        captureBox.innerHTML = `
+                            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                                <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                                <h4 class="mt-3" style="color: black;">Error recording eye blink pattern</h4>
+                                
+                                <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                                    <h5 style="color: black;">Using default pattern:</h5>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="badge bg-warning p-2 mx-1" style="font-size: 1.1rem;">Code: LB</span>
+                                    </div>
+                                    <p class="mt-2" style="color: #333; font-weight: bold; font-size: 1.1rem;">Left Eye Both Eyes</p>
+                                </div>
+                                
+                                <button id="retakeBtn" class="btn btn-outline-secondary mt-3">
+                                    <i class="fas fa-redo me-2"></i>Try Again
+                                </button>
+                                
+                                <p class="mt-3 text-muted">Click "Save New Biometric" below to use this default pattern.</p>
+                            </div>`;
+                        
+                        saveBtn.disabled = false;
+                        
+                        // Set up retake button for new result
+                        document.getElementById('retakeBtn').addEventListener('click', function() {
+                            // Use the same retake function recursively
+                            document.getElementById('retakeBtn').click();
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    captureBox.innerHTML = `
+                        <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                            <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                            <h4 class="mt-3" style="color: black;">Error recording biometric</h4>
+                            <p style="color: #555;">${error.message || "An unexpected error occurred"}</p>
+                            <button id="retryBtn" class="btn btn-primary mt-3">Try Again</button>
+                        </div>`;
+                        
+                    document.getElementById('retryBtn').addEventListener('click', function() {
+                        captureBtn.disabled = false;
+                        captureBox.innerHTML = `<div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;"><i class="fas fa-eye fa-4x" style="color: var(--primary);"></i></div>`;
+                    });
+                }
+            });
+        } else {
+            // Default pattern similar code but with retake button
+            document.getElementById('biometricData').value = 'LB';
+            captureBox.innerHTML = `
+                <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                    <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                    <h4 class="mt-3" style="color: black;">Error recording eye blink pattern</h4>
+                    
+                    <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                        <h5 style="color: black;">Using default pattern:</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <span class="badge bg-warning p-2 mx-1" style="font-size: 1.1rem;">Code: LB</span>
+                        </div>
+                        <p class="mt-2" style="color: #333; font-weight: bold; font-size: 1.1rem;">Left Eye Both Eyes</p>
+                    </div>
+                    
+                    <button id="retakeBtn" class="btn btn-outline-secondary mt-3">
+                        <i class="fas fa-redo me-2"></i>Try Again
+                    </button>
+                    
+                    <p class="mt-3 text-muted">Or click "Save New Biometric" below to use this default pattern.</p>
+                </div>`;
+            
+            saveBtn.disabled = false;
+            
+            // Set up retake functionality
+            document.getElementById('retakeBtn').addEventListener('click', async function() {
+                // Similar retake code as above
+                // This will be triggered when user wants to try again after seeing default pattern
+                saveBtn.disabled = true;
+                captureBox.innerHTML = `
+                    <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                        <h4 class="mb-3" style="color: black;">Recording Eye Blink Pattern</h4>
+                        <p style="color: black;">A camera window has opened. Please look at the camera and blink your eyes to record a pattern.</p>
+                        <p style="color: #555;">The window will close automatically when recording is complete.</p>
+                    </div>
+                `;
+                
+                // Start the recording process again - same logic as above
+                try {
+                    const response = await fetch('/record_biometric', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ 
+                            biometric_type: 'eyeblink'
+                        })
+                    });
+                    
+                    // Process result - similar to above
+                    // [Rest of the code similar to above retake handler]
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        document.getElementById('biometricData').value = result.code;
+                        captureBox.innerHTML = `
+                            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                                <i class="fas fa-check-circle fa-4x" style="color: var(--success);"></i>
+                                <h4 class="mt-3" style="color: black;">Eye blink pattern recorded successfully!</h4>
+                                
+                                <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                                    <h5 style="color: black;">Your pattern:</h5>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="badge bg-primary p-2 mx-1" style="font-size: 1.1rem;">Code: ${result.code}</span>
+                                    </div>
+                                    <p class="mt-2" style="color: #333; font-weight: bold; font-size: 1.1rem;">${result.display}</p>
+                                </div>
+                                
+                                <button id="retakeBtn2" class="btn btn-outline-secondary mt-3">
+                                    <i class="fas fa-redo me-2"></i>Retake
+                                </button>
+                                
+                                <p class="mt-3 text-muted">Click "Save New Biometric" below to confirm this pattern.</p>
+                            </div>`;
+                        
+                        saveBtn.disabled = false;
+                        
+                        document.getElementById('retakeBtn2').addEventListener('click', function() {
+                            document.getElementById('retakeBtn').click();
+                        });
+                    } else {
+                        // Show default pattern again
+                        document.getElementById('biometricData').value = 'LB';
+                        captureBox.innerHTML = `
+                            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                                <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                                <h4 class="mt-3" style="color: black;">Error recording eye blink pattern</h4>
+                                
+                                <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                                    <h5 style="color: black;">Using default pattern:</h5>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="badge bg-warning p-2 mx-1" style="font-size: 1.1rem;">Code: LB</span>
+                                    </div>
+                                    <p class="mt-2" style="color: #333; font-weight: bold; font-size: 1.1rem;">Left Eye Both Eyes</p>
+                                </div>
+                                
+                                <button id="retakeBtn2" class="btn btn-outline-secondary mt-3">
+                                    <i class="fas fa-redo me-2"></i>Try Again
+                                </button>
+                                
+                                <p class="mt-3 text-muted">Or click "Save New Biometric" below to use this default pattern.</p>
+                            </div>`;
+                        
+                        saveBtn.disabled = false;
+                        
+                        document.getElementById('retakeBtn2').addEventListener('click', function() {
+                            document.getElementById('retakeBtn').click();
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    captureBox.innerHTML = `
+                        <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                            <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                            <h4 class="mt-3" style="color: black;">Error recording biometric</h4>
+                            <p style="color: #555;">${error.message || "An unexpected error occurred"}</p>
+                            <button id="retryBtn" class="btn btn-primary mt-3">Try Again</button>
+                        </div>`;
+                        
+                    document.getElementById('retryBtn').addEventListener('click', function() {
+                        captureBtn.disabled = false;
+                        captureBox.innerHTML = `<div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;"><i class="fas fa-eye fa-4x" style="color: var(--primary);"></i></div>`;
+                    });
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        captureBox.innerHTML = `
+            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                <h4 class="mt-3" style="color: black;">Error recording biometric</h4>
+                <p style="color: #555;">${error.message || "An unexpected error occurred"}</p>
+                <button id="retryBtn" class="btn btn-primary mt-3">Try Again</button>
+            </div>`;
+            
+        document.getElementById('retryBtn').addEventListener('click', function() {
+            captureBtn.disabled = false;
+            captureBox.innerHTML = `<div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;"><i class="fas fa-eye fa-4x" style="color: var(--primary);"></i></div>`;
+        });
+    }
+});
+</script>
+{% endif %}
+
+{% if bio_type == 'voice' %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const captureBtn = document.getElementById('captureBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBox = document.getElementById('captureBox');
+    
+    // Setup the initial UI elements with proper labels
+    document.getElementById('captureBox').innerHTML = `
+        <div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;">
+            <i class="fas fa-microphone fa-4x" style="color: var(--primary);"></i>
+        </div>`;
+});
+
+// Handle the capture button click
+document.getElementById('captureBtn').addEventListener('click', async function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    captureBtn.disabled = true;
+    
+    // Update UI to voice recording setup
+    captureBox.innerHTML = `
+        <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+            <h4 class="mb-3" style="color: black;">Voice Recognition Setup</h4>
+            <p style="color: black;">You will record the phrase:<br>
+                <span style="font-weight: bold; font-size: 1.2rem; color: #007bff; background-color: #f8f9fa; padding: 8px; border-radius: 4px; display: inline-block; margin-top: 10px;">
+                    I let the positive overrun the negative
+                </span>
+            </p>
+            <p style="color: #555;">You'll need to record this phrase 4 times</p>
+            <button id="startVoiceRecordingBtn" class="btn btn-primary mx-auto mt-3" style="width: 200px;">
+                <i class="fas fa-microphone me-2"></i>Start Recording
+            </button>
+        </div>
+    `;
+
+    // Set up voice recording process
+    document.getElementById('startVoiceRecordingBtn').addEventListener('click', async function() {
+        // Update UI for recording setup
+        captureBox.innerHTML = `
+            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem; margin: 0 auto;" role="status"></div>
+                <h4 class="mb-3" style="color: black;">Initializing Microphone...</h4>
+                <p style="color: #555;">Please wait while we prepare the recording system</p>
+            </div>
+        `;
+
+        try {
+            // Initialize recording
+            const setupResponse = await fetch('/record_biometric', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ biometric_type: 'voice' })
+            });
+            
+            const setupResult = await setupResponse.json();
+            console.log("Voice recording setup:", setupResult);
+            
+            if (!setupResult.ready_to_record) {
+                throw new Error(setupResult.error || "Failed to initialize recording");
+            }
+            
+            // For each of the 4 samples
+            for (let sampleNumber = 1; sampleNumber <= 4; sampleNumber++) {
+                // Show sample recording UI
+                captureBox.innerHTML = `
+                    <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px; width: 100%;">
+                        <h4 class="mb-3" style="color: black;">Recording Sample ${sampleNumber}/4</h4>
+                        
+                        <div id="instructionBox" style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-left: 5px solid #007bff;">
+                            <p style="font-weight: bold; font-size: 1.2rem; color: #007bff; margin-bottom: 5px;">Please say clearly:</p>
+                            <p style="font-size: 1.1rem; font-weight: bold;">"I let the positive overrun the negative"</p>
+                        </div>
+                        
+                        <div id="countdownBox" style="margin: 20px auto; width: 100px; height: 100px; border-radius: 50%; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: bold; color: #007bff;">
+                            3
+                        </div>
+                        
+                        <div id="recordingIndicator" style="display: none; margin: 20px auto;">
+                            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                <div class="recording-dot" style="width: 24px; height: 24px; background-color: red; border-radius: 50%; margin-right: 10px; animation: pulse 1s infinite;"></div>
+                                <span style="font-weight: bold; font-size: 1.2rem;">Recording...</span>
+                            </div>
+                            <div id="progressBar" style="width: 100%; height: 10px; background-color: #f0f0f0; border-radius: 5px; overflow: hidden;">
+                                <div id="progressFill" style="width: 0%; height: 100%; background-color: #007bff; transition: width 0.1s linear;"></div>
+                            </div>
+                            <p id="timeRemaining" style="margin-top: 5px; font-size: 0.9rem; color: #555;">0/5 seconds</p>
+                        </div>
+                        
+                        <div id="processingIndicator" style="display: none; margin: 20px auto;">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p style="margin-top: 10px;">Processing recording...</p>
+                        </div>
+                        
+                        <div id="statusMessage" class="mt-3" style="min-height: 50px;"></div>
+                    </div>
+                `;
+                
+                // Apply pulse animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes pulse {
+                        0% { opacity: 1; }
+                        50% { opacity: 0.5; }
+                        100% { opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Countdown
+                const countdownBox = document.getElementById('countdownBox');
+                const instructionBox = document.getElementById('instructionBox');
+                const recordingIndicator = document.getElementById('recordingIndicator');
+                
+                // Run countdown
+                for (let i = 3; i > 0; i--) {
+                    countdownBox.textContent = i;
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+                
+                // Show "GO" before starting
+                countdownBox.textContent = "GO!";
+                countdownBox.style.backgroundColor = "#28a745";
+                countdownBox.style.color = "white";
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                // Hide countdown, show recording
+                countdownBox.style.display = "none";
+                recordingIndicator.style.display = "block";
+                
+                // Update progress bar during recording
+                const progressFill = document.getElementById('progressFill');
+                const timeRemaining = document.getElementById('timeRemaining');
+                
+                // Start actual recording in background
+                const recordPromise = fetch('/record_voice_sample', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sample_number: sampleNumber,
+                        user_dir: setupResult.user_dir
+                    })
+                });
+                
+                // Show progress while recording happens
+                for (let i = 0; i <= 50; i++) {
+                    const percent = i * 2;
+                    progressFill.style.width = `${percent}%`;
+                    timeRemaining.textContent = `${Math.floor(i/10)}/5 seconds`;
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                
+                // Hide recording indicator, show processing
+                recordingIndicator.style.display = "none";
+                document.getElementById('processingIndicator').style.display = "block";
+                
+                // Wait for the recording to finish processing
+                const recordResult = await (await recordPromise).json();
+                console.log(`Sample ${sampleNumber} result:`, recordResult);
+                
+                // Show status
+                const statusMessage = document.getElementById('statusMessage');
+                if (recordResult.success) {
+                    statusMessage.innerHTML = `
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>Recording ${sampleNumber} completed successfully!
+                        </div>
+                    `;
+                } else {
+                    statusMessage.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fas fa-times-circle me-2"></i>Error: ${recordResult.error || "Recording failed"}
+                            <p>We'll try again.</p>
+                        </div>
+                    `;
+                    sampleNumber--; // Try this sample again
+                }
+                
+                // Wait briefly before next sample
+                await new Promise(resolve => setTimeout(resolve, 1500));
+            }
+            
+            // All samples complete - show model training
+            captureBox.innerHTML = `
+                <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem; margin: 0 auto;" role="status"></div>
+                    <h4 class="mb-3" style="color: black;">Training Voice Model</h4>
+                    <p style="color: #555;">Please wait while we process your voice recordings</p>
+                    <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                    </div>
+                </div>
+            `;
+            
+            // Get the final model path from the last recording
+            const modelPath = setupResult.code;
+            document.getElementById('biometricData').value = modelPath;
+            
+            // Wait for visual effect
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Show success UI
+            captureBox.innerHTML = `
+                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                        <i class="fas fa-check fa-3x" style="color: white;"></i>
+                    </div>
+                    <h4 style="color: black;">Voice Model Created Successfully!</h4>
+                    <p style="color: #555; max-width: 80%; margin: 15px auto;">Your unique voice pattern has been saved and can now be used for verification.</p>
+                    <button id="retakeBtn" class="btn btn-outline-secondary me-2 mt-3">
+                        <i class="fas fa-redo me-2"></i>Record Again
+                    </button>
+                </div>`;
+            
+            // Enable save button
+            saveBtn.disabled = false;
+            
+            // Set up retake button
+            document.getElementById('retakeBtn').addEventListener('click', function() {
+                captureBtn.disabled = false;
+                captureBtn.click();
+            });
+            
+        } catch (error) {
+            console.error('Error during voice recording:', error);
+            captureBox.innerHTML = `
+                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                        <i class="fas fa-times fa-3x" style="color: white;"></i>
+                    </div>
+                    <h4 style="color: black;">Voice Recording Failed</h4>
+                    <p style="color: #555; max-width: 80%; margin: 15px auto;">${error.message || "An unexpected error occurred"}</p>
+                    <div class="d-flex mt-3">
+                        <button id="retryBtn" class="btn btn-primary btn-lg me-2">
+                            <i class="fas fa-redo me-2"></i>Try Again
+                        </button>
+                    </div>
+                </div>`;
+                
+            document.getElementById('retryBtn').addEventListener('click', function() {
+                captureBtn.disabled = false;
+                captureBtn.click();
+            });
+        }
+    });
+});
+</script>
+{% endif %}
+
+{% if bio_type == 'fingerprint' %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    // Set up the initial UI
+    captureBox.innerHTML = `
+        <div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;">
+            <i class="fas fa-fingerprint fa-4x" style="color: var(--primary);"></i>
+        </div>`;
+    
+    captureBtn.innerHTML = '<i class="fas fa-camera me-2"></i>Reset Fingerprint Sequence';
+});
+
+document.getElementById('captureBtn').addEventListener('click', async function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    captureBtn.disabled = true;
+    
+    // Show the fingerprint count selection UI
+    captureBox.innerHTML = `
+        <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+            <i class="fas fa-fingerprint fa-4x mb-3" style="color: var(--primary);"></i>
+            <h4 class="mb-3" style="color: black;">Reset Fingerprint Sequence</h4>
+            <p style="color: #555;">How many fingerprints would you like to enroll in sequence? (1-5)</p>
+            
+            <div class="mb-3 mt-4">
+                <div class="d-flex align-items-center justify-content-center">
+                    <span class="me-3" style="font-size: 1.2rem; font-weight: bold;">1</span>
+                    <input type="range" class="form-range" min="1" max="5" value="1" id="fingerprintCountSlider" style="width: 200px;">
+                    <span class="ms-3" style="font-size: 1.2rem; font-weight: bold;">5</span>
+                </div>
+                <div class="mt-2">
+                    <span id="selectedCount" style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">1</span> fingerprint(s)
+                </div>
+            </div>
+            
+            <button id="startFingerprintEnrollmentBtn" class="btn btn-primary mt-3">
+                <i class="fas fa-arrow-right me-2"></i>Begin Enrollment
+            </button>
+        </div>
+    `;
+    
+    // Update the selected count when slider changes
+    const slider = document.getElementById('fingerprintCountSlider');
+    const selectedCountSpan = document.getElementById('selectedCount');
+    
+    slider.addEventListener('input', function() {
+        selectedCountSpan.textContent = this.value;
+    });
+    
+    // Set up the enrollment process
+    document.getElementById('startFingerprintEnrollmentBtn').addEventListener('click', async function() {
+        const totalPrints = parseInt(slider.value);
+        let currentSequence = 1;
+        
+        // Function to handle each fingerprint in sequence
+        async function captureFingerprint(sequenceNumber) {
+            return new Promise((resolveCapture, rejectCapture) => {
+                captureBox.innerHTML = `
+                    <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <i class="fas fa-fingerprint fa-4x mb-3" style="color: var(--primary);"></i>
+                        <div class="progress mb-3" style="height: 10px;">
+                            <div class="progress-bar" role="progressbar" style="width: ${(sequenceNumber-1)/totalPrints*100}%" aria-valuenow="${sequenceNumber-1}" aria-valuemin="0" aria-valuemax="${totalPrints}"></div>
+                        </div>
+                        <h4 class="mb-3" style="color: black;">Upload Fingerprint #${sequenceNumber} of ${totalPrints}</h4>
+                        <p style="color: #555;">Please upload a clear image of your fingerprint</p>
+                        
+                        <div class="mb-3 mt-4">
+                            <input type="file" id="fingerprintFileInput" class="form-control" accept="image/*">
+                        </div>
+                        
+                        <button id="uploadFingerprintBtn" class="btn btn-primary mt-2">
+                            <i class="fas fa-upload me-2"></i>Upload Fingerprint #${sequenceNumber}
+                        </button>
+                    </div>
+                `;
+                
+                // Set up the upload button for this sequence number
+                document.getElementById('uploadFingerprintBtn').addEventListener('click', async function() {
+                    const fileInput = document.getElementById('fingerprintFileInput');
+                    
+                    if (!fileInput.files || fileInput.files.length === 0) {
+                        alert('Please select a fingerprint image to upload');
+                        return;
+                    }
+                    
+                    // Show loading state
+                    captureBox.innerHTML = `
+                        <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                            <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem; margin: 0 auto;" role="status"></div>
+                            <h4 class="mb-3" style="color: black;">Uploading Fingerprint #${sequenceNumber}</h4>
+                            <p style="color: #555;">Please wait while we process your fingerprint image...</p>
+                        </div>
+                    `;
+                    
+                    // Create form data to send the file
+                    const formData = new FormData();
+                    formData.append('fingerprint_image', fileInput.files[0]);
+                    formData.append('biometric_type', 'fingerprint');
+                    formData.append('sequence_number', sequenceNumber);
+                    formData.append('total_prints', totalPrints);
+                    
+                    try {
+                        // Send the fingerprint to the server
+                        const response = await fetch('/record_biometric', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            // Save the fingerprint path (only on the last one)
+                            if (sequenceNumber === totalPrints) {
+                                document.getElementById('biometricData').value = result.code;
+                            }
+                            
+                            // Show success message
+                            captureBox.innerHTML = `
+                                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                        <i class="fas fa-check fa-3x" style="color: white;"></i>
+                                    </div>
+                                    <h4 style="color: black;">Fingerprint #${sequenceNumber} Saved Successfully</h4>
+                                    <p style="color: #555; max-width: 80%; margin: 15px auto;">Your fingerprint has been saved.</p>
+                                    <div class="progress mb-3 mt-2" style="height: 10px; width: 80%;">
+                                        <div class="progress-bar" role="progressbar" style="width: ${sequenceNumber/totalPrints*100}%" aria-valuenow="${sequenceNumber}" aria-valuemin="0" aria-valuemax="${totalPrints}"></div>
+                                    </div>
+                                    <p style="color: #555;">Progress: ${sequenceNumber} of ${totalPrints} fingerprints</p>
+                                    <div class="d-flex mt-3">
+                                        <button id="retakeBtn" class="btn btn-outline-secondary me-2">
+                                            <i class="fas fa-redo me-2"></i>Retry This Fingerprint
+                                        </button>
+                                        <button id="continueBtn" class="btn btn-primary">
+                                            <i class="fas fa-arrow-right me-2"></i>${sequenceNumber === totalPrints ? 'Complete Enrollment' : 'Next Fingerprint'}
+                                        </button>
+                                    </div>
+                                </div>`;
+                            
+                            // Set up retake button
+                            document.getElementById('retakeBtn').addEventListener('click', function() {
+                                // Restart this fingerprint capture
+                                captureFingerprint(sequenceNumber).then(resolveCapture).catch(rejectCapture);
+                            });
+                            
+                            // Set up continue button
+                            document.getElementById('continueBtn').addEventListener('click', function() {
+                                resolveCapture(result.code);
+                            });
+                        } else {
+                            // Show error
+                            captureBox.innerHTML = `
+                                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                        <i class="fas fa-times fa-3x" style="color: white;"></i>
+                                    </div>
+                                    <h4 style="color: black;">Fingerprint Upload Failed</h4>
+                                    <p style="color: #555; max-width: 80%; margin: 15px auto;">${result.error || "An unexpected error occurred"}</p>
+                                    <button id="retryBtn" class="btn btn-primary mt-3">Try Again</button>
+                                </div>`;
+                            
+                            document.getElementById('retryBtn').addEventListener('click', function() {
+                                captureFingerprint(sequenceNumber).then(resolveCapture).catch(rejectCapture);
+                            });
+                        }
+                    } catch (error) {
+                        console.error('Fingerprint upload error:', error);
+                        
+                        // Show error message
+                        captureBox.innerHTML = `
+                            <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                                    <i class="fas fa-times fa-3x" style="color: white;"></i>
+                                </div>
+                                <h4 style="color: black;">Upload Error</h4>
+                                <p style="color: #555; max-width: 80%; margin: 15px auto;">${error.message || "An unexpected error occurred"}</p>
+                                <button id="retryBtn" class="btn btn-primary mt-3">Try Again</button>
+                            </div>`;
+                        
+                        document.getElementById('retryBtn').addEventListener('click', function() {
+                            captureFingerprint(sequenceNumber).then(resolveCapture).catch(rejectCapture);
+                        });
+                    }
+                });
+            });
+        }
+        
+        try {
+            // Process each fingerprint in sequence
+            for (let seq = 1; seq <= totalPrints; seq++) {
+                await captureFingerprint(seq);
+            }
+            
+            // Show completion message after all fingerprints are enrolled
+            captureBox.innerHTML = `
+                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                        <i class="fas fa-check fa-3x" style="color: white;"></i>
+                    </div>
+                    <h4 style="color: black;">Fingerprint Reset Complete!</h4>
+                    <p style="color: #555; max-width: 80%; margin: 15px auto;">All ${totalPrints} fingerprints have been successfully enrolled.</p>
+                </div>`;
+            
+            // Enable save button
+            saveBtn.disabled = false;
+            
+        } catch (error) {
+            console.error('Error in fingerprint sequence enrollment:', error);
+            captureBox.innerHTML = `
+                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                        <i class="fas fa-times fa-3x" style="color: white;"></i>
+                    </div>
+                    <h4 style="color: black;">Enrollment Process Failed</h4>
+                    <p style="color: #555; max-width: 80%; margin: 15px auto;">${error.message || "An unexpected error occurred"}</p>
+                    <button id="restartBtn" class="btn btn-primary mt-3">Restart Enrollment</button>
+                </div>`;
+            
+            document.getElementById('restartBtn').addEventListener('click', function() {
+                captureBtn.disabled = false;
+                captureBtn.click();
+            });
+        }
+    });
+});
+</script>
+{% endif %}
+
+{% if bio_type == 'neck_movement' %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    // Set up the initial UI
+    captureBox.innerHTML = `
+        <div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;">
+            <i class="fas fa-head-side-mask fa-4x" style="color: var(--primary);"></i>
+        </div>`;
+    
+    captureBtn.innerHTML = '<i class="fas fa-camera me-2"></i>Reset Neck Movement Pattern';
+    saveBtn.innerHTML = '<i class="fas fa-save me-2"></i>Save New Biometric';
+});
+
+document.getElementById('captureBtn').addEventListener('click', async function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    captureBtn.disabled = true;
+    
+    try {
+        // Show a message while recording is in progress
+        captureBox.innerHTML = `
+            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                <h4 class="mb-3" style="color: black;">Recording Neck Movement Pattern</h4>
+                <p style="color: black;">A camera window has opened. Please follow the instructions to record your neck movement pattern.</p>
+                <p style="color: #555;">Move your head in different directions (Up, Down, Left, Right) to create a sequence.</p>
+                <p style="color: #555;">The window will close automatically when recording is complete.</p>
+            </div>
+        `;
+        
+        // Start the recording process
+        const response = await fetch('/record_biometric', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                biometric_type: 'neck_movement'
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            document.getElementById('biometricData').value = result.code;
+            captureBox.innerHTML = `
+                <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                    <i class="fas fa-check-circle fa-4x" style="color: var(--success);"></i>
+                    <h4 class="mt-3" style="color: black;">Neck Movement Pattern Recorded!</h4>
+                    
+                    <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                        <h5 style="color: black;">Your pattern:</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="d-flex mt-2">
+                                ${result.code.split('').map(letter => {
+                                    let icon, direction;
+                                    switch(letter) {
+                                        case 'U': icon = 'fa-arrow-up'; direction = 'Up'; break;
+                                        case 'D': icon = 'fa-arrow-down'; direction = 'Down'; break;
+                                        case 'L': icon = 'fa-arrow-left'; direction = 'Left'; break;
+                                        case 'R': icon = 'fa-arrow-right'; direction = 'Right'; break;
+                                        default: icon = 'fa-circle'; direction = 'Unknown';
+                                    }
+                                    return `<div class="mx-2 p-2 d-flex flex-column align-items-center">
+                                        <i class="fas ${icon} fa-2x" style="color: var(--primary);"></i>
+                                        <small class="mt-1">${direction}</small>
+                                    </div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="retakeBtn" class="btn btn-outline-secondary mt-3">
+                        <i class="fas fa-redo me-2"></i>Record Again
+                    </button>
+                    
+                    <p class="mt-3 text-muted">Click "Save New Biometric" below to confirm this pattern.</p>
+                </div>`;
+            
+            saveBtn.disabled = false;
+            
+            document.getElementById('retakeBtn').addEventListener('click', function() {
+                captureBtn.disabled = false;
+                captureBtn.click();
+            });
+        } else {
+            // Default pattern fallback
+            document.getElementById('biometricData').value = 'RLU';
+            captureBox.innerHTML = `
+                <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                    <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                    <h4 class="mt-3" style="color: black;">Error recording neck movement pattern</h4>
+                    
+                    <div class="mt-3 mb-4 p-3" style="border: 2px solid #ddd; border-radius: 8px; background-color: #f8f9fa; width: 90%; margin: 0 auto;">
+                        <h5 style="color: black;">Default pattern:</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="d-flex mt-2">
+                                <div class="mx-2 p-2 d-flex flex-column align-items-center">
+                                    <i class="fas fa-arrow-right fa-2x" style="color: var(--primary);"></i>
+                                    <small class="mt-1">Right</small>
+                                </div>
+                                <div class="mx-2 p-2 d-flex flex-column align-items-center">
+                                    <i class="fas fa-arrow-left fa-2x" style="color: var(--primary);"></i>
+                                    <small class="mt-1">Left</small>
+                                </div>
+                                <div class="mx-2 p-2 d-flex flex-column align-items-center">
+                                    <i class="fas fa-arrow-up fa-2x" style="color: var(--primary);"></i>
+                                    <small class="mt-1">Up</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="retakeBtn" class="btn btn-outline-secondary mt-3">
+                        <i class="fas fa-redo me-2"></i>Try Again
+                    </button>
+                    
+                    <p class="mt-3 text-muted">Or click "Save New Biometric" below to use this default pattern.</p>
+                </div>`;
+            
+            saveBtn.disabled = false;
+            
+            document.getElementById('retakeBtn').addEventListener('click', function() {
+                captureBtn.disabled = false;
+                captureBtn.click();
+            });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        captureBox.innerHTML = `
+            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                <h4 class="mt-3" style="color: black;">Error recording biometric</h4>
+                <p style="color: #555;">${error.message || "An unexpected error occurred"}</p>
+                <button id="retryBtn" class="btn btn-primary mt-3">Try Again</button>
+            </div>`;
+            
+        document.getElementById('retryBtn').addEventListener('click', function() {
+            captureBtn.disabled = false;
+            captureBox.innerHTML = `<div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;"><i class="fas fa-head-side-mask fa-4x" style="color: var(--primary);"></i></div>`;
+        });
+    }
+});
+</script>
+{% endif %}
+
+{% if bio_type == 'face_detection' %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    // Set up the initial UI
+    captureBox.innerHTML = `
+        <div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;">
+            <i class="fas fa-user fa-4x" style="color: var(--primary);"></i>
+        </div>`;
+    
+    captureBtn.innerHTML = '<i class="fas fa-camera me-2"></i>Reset Face Recognition';
+    saveBtn.innerHTML = '<i class="fas fa-save me-2"></i>Save New Face Biometric';
+});
+
+// In the face detection reset functionality
+
+document.getElementById('captureBtn').addEventListener('click', async function() {
+    const captureBox = document.getElementById('captureBox');
+    const saveBtn = document.getElementById('saveBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    
+    captureBtn.disabled = true;
+    
+    try {
+        // Show a message while recording is in progress
+        captureBox.innerHTML = `
+            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                <h4 class="mb-3" style="color: black;">Recording Face Recognition</h4>
+                <p style="color: black;">A camera window is opening. Please look at the camera and follow the on-screen directions.</p>
+                <p style="color: black;">The system will guide you through capturing different angles of your face.</p>
+                <p style="color: #555;">After capturing, the system will train the face recognition model. This entire process takes 3-4 minutes.</p>
+                <div class="progress mt-3" style="height: 20px;">
+                    <div id="faceProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 5%"></div>
+                </div>
+                <p id="faceProgressStatus" class="mt-2">Starting face enrollment...</p>
+            </div>
+        `;
+        
+        // Set up a variable to track progress stages
+        let faceCurrentStage = 'starting';
+        let stageStartTime = Date.now();
+        
+        // Start the face enrollment process
+        const responsePromise = fetch('/record_biometric', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                biometric_type: 'face_detection'
+            })
+        });
+        
+        // Update progress animation while waiting for response
+        let progressPercent = 5;
+        const progressInterval = setInterval(() => {
+            const currentTime = Date.now();
+            const timeElapsed = (currentTime - stageStartTime) / 1000; // seconds
+            
+            // Change stages based on elapsed time
+            if (faceCurrentStage === 'starting' && timeElapsed > 3) {
+                faceCurrentStage = 'capturing';
+                stageStartTime = currentTime;
+                document.getElementById('faceProgressStatus').textContent = 'Capturing face images...';
+            } else if (faceCurrentStage === 'capturing' && timeElapsed > 60) {
+                faceCurrentStage = 'processing';
+                stageStartTime = currentTime;
+                document.getElementById('faceProgressStatus').textContent = 'Processing face data...';
+            } else if (faceCurrentStage === 'processing' && timeElapsed > 30) {
+                faceCurrentStage = 'training';
+                stageStartTime = currentTime;
+                document.getElementById('faceProgressStatus').textContent = 'Training face recognition model...';
+            }
+            
+            // Update progress percentage based on current stage
+            if (faceCurrentStage === 'starting') {
+                progressPercent = Math.min(5 + (timeElapsed * 2), 10);
+            } else if (faceCurrentStage === 'capturing') {
+                progressPercent = Math.min(10 + (timeElapsed / 60 * 50), 60);
+            } else if (faceCurrentStage === 'processing') {
+                progressPercent = Math.min(60 + (timeElapsed / 30 * 20), 80);
+            } else if (faceCurrentStage === 'training') {
+                progressPercent = Math.min(80 + (timeElapsed / 60 * 15), 95);
+            }
+            
+            document.getElementById('faceProgressBar').style.width = `${progressPercent}%`;
+        }, 1000);
+        
+        const response = await responsePromise;
+        const result = await response.json();
+        clearInterval(progressInterval);
+        
+        if (result.success) {
+            document.getElementById('faceProgressBar').style.width = '100%';
+            document.getElementById('faceProgressStatus').textContent = 'Face recognition setup complete!';
+            
+            document.getElementById('biometricData').value = result.code;
+            captureBox.innerHTML = `
+                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px;">
+                    <i class="fas fa-check-circle fa-4x" style="color: var(--success);"></i>
+                    <h4 class="mt-3" style="color: black;">Face Recognition Updated!</h4>
+                    <p style="color: #555;">Your face recognition profile has been successfully updated.</p>
+                    <button id="retakeBtn" class="btn btn-outline-primary mt-3 me-2">Retake</button>
+                </div>`;
+            
+            saveBtn.disabled = false;
+            
+            document.getElementById('retakeBtn').addEventListener('click', function() {
+                captureBtn.disabled = false;
+                captureBtn.click();
+            });
+        } else {
+            // Default pattern fallback
+            document.getElementById('biometricData').value = 'default_face';
+            captureBox.innerHTML = `
+                <div style="text-align: center; background-color: white; color: black; border-radius: 8px; padding: 20px;">
+                    <i class="fas fa-exclamation-triangle fa-4x" style="color: var(--warning);"></i>
+                    <h4 class="mt-3" style="color: black;">Using default pattern</h4>
+                    <p style="color: #555;">${result.error || "Could not record face recognition pattern"}</p>
+                    <button id="retakeBtn" class="btn btn-outline-primary mt-3 me-2">Try Again</button>
+                </div>`;
+            
+            saveBtn.disabled = false;
+            
+            document.getElementById('retakeBtn').addEventListener('click', function() {
+                captureBtn.disabled = false;
+                captureBtn.click();
+            });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        captureBox.innerHTML = `
+            <div style="text-align: center; padding: 20px; background-color: white; color: black; border-radius: 8px;">
+                <i class="fas fa-times-circle fa-4x" style="color: var(--danger);"></i>
+                <h4 class="mt-3" style="color: black;">Error recording biometric</h4>
+                <p style="color: #555;">${error.message || "An unexpected error occurred"}</p>
+                <button id="retryBtn" class="btn btn-primary mt-3">Try Again</button>
+            </div>`;
+            
+        document.getElementById('retryBtn').addEventListener('click', function() {
+            captureBtn.disabled = false;
+            captureBox.innerHTML = `<div id="captureIcon" style="background-color: white; padding: 30px; border-radius: 8px;"><i class="fas fa-user fa-4x" style="color: var(--primary);"></i></div>`;
+        });
+    }
+});
+</script>
+{% endif %}
+{% endblock %}

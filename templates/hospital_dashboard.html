@@ -1,0 +1,492 @@
+{% extends 'base.html' %}
+
+{% block title %}Hospital Dashboard - SecureBlink{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">MediGuard</h4>
+                    <div>
+                        <a href="{{ url_for('health_assistant') }}" class="btn btn-primary">
+                            <i class="fas fa-robot me-1"></i> Health Assistant
+                        </a>
+                        <a href="{{ url_for('hospital_dashboard_setup') }}" class="btn btn-outline-primary ms-2">
+                            <i class="fas fa-cog me-1"></i> Edit Security Settings
+                        </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body text-center">
+                    <div class="card-icon text-primary">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <h5 class="card-title">Total Patients</h5>
+                    <h2 class="mb-3">124</h2>
+                    <p class="text-success mb-0"><i class="fas fa-arrow-up me-1"></i> +8.2% from last week</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body text-center">
+                    <div class="card-icon text-success">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h5 class="card-title">Available Beds</h5>
+                    <h2 class="mb-3">23</h2>
+                    <p class="text-muted mb-0">15% of total capacity</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body text-center">
+                    <div class="card-icon text-warning">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h5 class="card-title">Appointments Today</h5>
+                    <h2 class="mb-3">42</h2>
+                    <p class="text-muted mb-0">8 remaining for today</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body text-center">
+                    <div class="card-icon text-danger">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h5 class="card-title">Emergency Cases</h5>
+                    <h2 class="mb-3">7</h2>
+                    <p class="text-danger mb-0"><i class="fas fa-arrow-up me-1"></i> +3 in last hour</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Patient Table -->
+        <div class="col-lg-8 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title">Recent Patients</h5>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary me-2">All Patients</button>
+                            <button class="btn btn-sm btn-outline-danger me-2">Critical Cases</button>
+                            <button class="btn btn-sm btn-outline-success">New Admissions</button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Doctor</th>
+                                    <th>Status</th>
+                                    <th>Admitted Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PT-2025-001</td>
+                                    <td>Robert Johnson</td>
+                                    <td>Cardiology</td>
+                                    <td>Dr. Emily Chen</td>
+                                    <td><span class="status-badge status-good">Stable</span></td>
+                                    <td>Today, 9:41 AM</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PT-2025-002</td>
+                                    <td>Maria Rodriguez</td>
+                                    <td>Orthopedics</td>
+                                    <td>Dr. James Wilson</td>
+                                    <td><span class="status-badge status-medium">Under Observation</span></td>
+                                    <td>Yesterday, 2:30 PM</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PT-2025-003</td>
+                                    <td>David Kim</td>
+                                    <td>Emergency</td>
+                                    <td>Dr. Sarah Johnson</td>
+                                    <td><span class="status-badge status-low">Critical</span></td>
+                                    <td>Today, 6:45 AM</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PT-2025-004</td>
+                                    <td>Lisa Thompson</td>
+                                    <td>Neurology</td>
+                                    <td>Dr. Michael Patel</td>
+                                    <td><span class="status-badge status-good">Stable</span></td>
+                                    <td>Apr 20, 2025</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PT-2025-005</td>
+                                    <td>Thomas Garcia</td>
+                                    <td>Pediatrics</td>
+                                    <td>Dr. Emma Williams</td>
+                                    <td><span class="status-badge status-medium">Under Observation</span></td>
+                                    <td>Apr 19, 2025</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PT-2025-006</td>
+                                    <td>Jennifer Lee</td>
+                                    <td>Oncology</td>
+                                    <td>Dr. Robert Brown</td>
+                                    <td><span class="status-badge status-good">Stable</span></td>
+                                    <td>Apr 18, 2025</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="text-muted">
+                            Showing 1-6 of 124 patients
+                        </div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-sm">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="col-lg-4">
+            <!-- Recent Activity -->
+            <div class="card dashboard-card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Activity</h5>
+                    <div class="activity-item">
+                        <p class="mb-1"><strong>Dr. Sarah Johnson</strong> updated patient <strong>David Kim's</strong> status</p>
+                        <p class="text-muted small mb-0">Today, 10:15 AM</p>
+                    </div>
+                    <div class="activity-item">
+                        <p class="mb-1 text-danger"><strong>Emergency alert</strong> for patient <strong>PT-2025-003</strong></p>
+                        <p class="text-muted small mb-0">Today, 7:23 AM</p>
+                    </div>
+                    <div class="activity-item">
+                        <p class="mb-1"><strong>New admission:</strong> <strong>Robert Johnson</strong> (Cardiology)</p>
+                        <p class="text-muted small mb-0">Today, 9:41 AM</p>
+                    </div>
+                    <div class="activity-item">
+                        <p class="mb-1"><strong>Dr. Emma Williams</strong> completed rounds in <strong>Pediatrics</strong></p>
+                        <p class="text-muted small mb-0">Yesterday, 4:30 PM</p>
+                    </div>
+                    <div class="text-center mt-2">
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All Activity</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Appointments</h5>
+                    <div class="expiring-item">
+                        <div class="d-flex justify-content-between">
+                            <strong>James Wilson</strong>
+                            <span class="text-warning">In 15 minutes</span>
+                        </div>
+                        <p class="mb-0">Dr. Emily Chen - Cardiology</p>
+                    </div>
+                    <div class="expiring-item">
+                        <div class="d-flex justify-content-between">
+                            <strong>Sandra Martinez</strong>
+                            <span class="text-success">11:30 AM</span>
+                        </div>
+                        <p class="mb-0">Dr. Michael Patel - Neurology</p>
+                    </div>
+                    <div class="expiring-item">
+                        <div class="d-flex justify-content-between">
+                            <strong>Daniel Taylor</strong>
+                            <span class="text-success">1:15 PM</span>
+                        </div>
+                        <p class="mb-0">Dr. Sarah Johnson - Emergency Followup</p>
+                    </div>
+                    <div class="expiring-item">
+                        <div class="d-flex justify-content-between">
+                            <strong>Emily Parker</strong>
+                            <span class="text-success">2:45 PM</span>
+                        </div>
+                        <p class="mb-0">Dr. Robert Brown - Oncology</p>
+                    </div>
+                    <div class="text-center mt-2">
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All Appointments</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row">
+        <!-- Department Statistics Card -->
+        <div class="col-md-6">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title">Department Statistics</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Cardiology</strong>
+                                    <span class="badge bg-primary rounded-pill">32</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Emergency</strong>
+                                    <span class="badge bg-danger rounded-pill">18</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Neurology</strong>
+                                    <span class="badge bg-primary rounded-pill">15</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Oncology</strong>
+                                    <span class="badge bg-primary rounded-pill">22</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Pediatrics</strong>
+                                    <span class="badge bg-primary rounded-pill">28</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <canvas id="departmentChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Patient Trends Card -->
+        <div class="col-md-6">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title">Patient Admission Trends</h5>
+                    <div class="mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="emergencyCheck" checked>
+                            <label class="form-check-label" for="emergencyCheck">Emergency</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="scheduledCheck" checked>
+                            <label class="form-check-label" for="scheduledCheck">Scheduled</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="dischargedCheck" checked>
+                            <label class="form-check-label" for="dischargedCheck">Discharged</label>
+                        </div>
+                    </div>
+                    <canvas id="admissionTrendChart" height="180"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Staff Overview -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title">Medical Staff Overview</h5>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All Staff</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="d-flex align-items-center p-2 border-start border-4 border-primary bg-light rounded mb-2">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-user-md fa-2x text-primary me-3"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Doctors</h6>
+                                    <p class="mb-0"><strong>24</strong> active today</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-flex align-items-center p-2 border-start border-4 border-success bg-light rounded mb-2">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-user-nurse fa-2x text-success me-3"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Nurses</h6>
+                                    <p class="mb-0"><strong>46</strong> active today</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-flex align-items-center p-2 border-start border-4 border-warning bg-light rounded mb-2">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-procedures fa-2x text-warning me-3"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Technicians</h6>
+                                    <p class="mb-0"><strong>18</strong> active today</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-flex align-items-center p-2 border-start border-4 border-info bg-light rounded mb-2">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-clipboard-list fa-2x text-info me-3"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Admin Staff</h6>
+                                    <p class="mb-0"><strong>12</strong> active today</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Department Chart
+    const departmentCtx = document.getElementById('departmentChart').getContext('2d');
+    const departmentChart = new Chart(departmentCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Cardiology', 'Emergency', 'Neurology', 'Oncology', 'Pediatrics'],
+            datasets: [{
+                data: [32, 18, 15, 22, 28],
+                backgroundColor: [
+                    '#3498db',
+                    '#e74c3c',
+                    '#9b59b6',
+                    '#f39c12',
+                    '#2ecc71'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Admission Trend Chart
+    const trendCtx = document.getElementById('admissionTrendChart').getContext('2d');
+    const trendChart = new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+                {
+                    label: 'Emergency',
+                    data: [45, 52, 38, 64, 58, 43],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: 'Scheduled',
+                    data: [120, 132, 141, 156, 165, 172],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: 'Discharged',
+                    data: [110, 145, 155, 130, 148, 160],
+                    borderColor: '#2ecc71',
+                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                    tension: 0.3,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Toggle chart data visibility
+    document.getElementById('emergencyCheck').addEventListener('change', function() {
+        trendChart.data.datasets[0].hidden = !this.checked;
+        trendChart.update();
+    });
+
+    document.getElementById('scheduledCheck').addEventListener('change', function() {
+        trendChart.data.datasets[1].hidden = !this.checked;
+        trendChart.update();
+    });
+
+    document.getElementById('dischargedCheck').addEventListener('change', function() {
+        trendChart.data.datasets[2].hidden = !this.checked;
+        trendChart.update();
+    });
+});
+</script>
+{% endblock %}
