@@ -1,0 +1,1115 @@
+2025-04-21 21:56:23,921 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 21:56:23,960 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 21:56:24,500 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 21:56:24,501 - rag-query - WARNING - Query attempt 1 failed: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:24,501 - rag-query - INFO - Retrying... (1/1)
+2025-04-21 21:56:25,608 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 21:56:25,610 - rag-query - WARNING - Query attempt 2 failed: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:25,610 - rag-query - ERROR - All retry attempts failed
+2025-04-21 21:56:25,610 - medical-rag - ERROR - Database health check failed: Failed to query medical database after 1 attempts. Last error: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:25,612 - medical-rag - INFO - Initial database health check: Failed
+2025-04-21 21:56:25,626 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 21:56:25,626 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 21:56:25,627 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 21:56:27,423 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 21:56:27,482 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 21:56:27,693 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 21:56:27,694 - rag-query - WARNING - Query attempt 1 failed: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:27,694 - rag-query - INFO - Retrying... (1/1)
+2025-04-21 21:56:28,777 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 21:56:28,778 - rag-query - WARNING - Query attempt 2 failed: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:28,779 - rag-query - ERROR - All retry attempts failed
+2025-04-21 21:56:28,779 - medical-rag - ERROR - Database health check failed: Failed to query medical database after 1 attempts. Last error: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:28,780 - medical-rag - INFO - Initial database health check: Failed
+2025-04-21 21:56:28,790 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 21:56:28,790 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 21:56:36,757 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 21:56:36,758 - rag-query - WARNING - Query attempt 1 failed: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:36,758 - rag-query - INFO - Retrying... (1/1)
+2025-04-21 21:56:37,891 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 21:56:37,892 - rag-query - WARNING - Query attempt 2 failed: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:37,892 - rag-query - ERROR - All retry attempts failed
+2025-04-21 21:56:37,892 - medical-rag - ERROR - Database health check failed: Failed to query medical database after 1 attempts. Last error: Collection.query() got an unexpected keyword argument 'score_threshold'
+2025-04-21 21:56:37,901 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 21:56:37] "GET / HTTP/1.1" 200 -
+2025-04-21 21:56:38,068 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 21:56:38] "GET /static/style.css HTTP/1.1" 200 -
+2025-04-21 21:56:38,071 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 21:56:38] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-21 22:01:14,629 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:01:14,678 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:01:14,855 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:01:14,903 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:01:14,905 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:01:14,917 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 22:01:14,917 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 22:01:14,918 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 22:01:16,365 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:01:16,411 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:01:16,593 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:01:16,647 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:01:16,649 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:01:16,657 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 22:01:16,658 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 22:01:46,561 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:01:46,569 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:01:46,578 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:01:46] "GET / HTTP/1.1" 200 -
+2025-04-21 22:01:46,762 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:01:46] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-04-21 22:01:46,763 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:01:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-21 22:02:16,005 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:02:16,012 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:02:16,013 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-21 22:02:16,014 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:02:16] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-21 22:02:44,152 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:02:44,157 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:02:44,158 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-21 22:02:44,159 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:02:44] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-21 22:03:01,450 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:03:01,457 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:03:01,458 - medical-rag - INFO - Medical query processed successfully. Type: recovery
+2025-04-21 22:03:01,459 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:03:01] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-21 22:03:11,335 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:03:11,341 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:03:11,342 - medical-rag - INFO - Medical query processed successfully. Type: resources
+2025-04-21 22:03:11,342 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:03:11] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-21 22:09:20,787 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:09:20,829 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:09:21,079 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:09:21,129 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:09:21,129 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:09:21,129 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:09:21,129 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:09:21,129 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:09:21,129 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:09:21,129 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:09:21,131 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:09:21,143 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 22:09:21,143 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 22:09:21,144 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 22:09:22,795 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:09:22,834 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:09:23,007 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:09:23,043 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:09:23,044 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:09:23,044 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:09:23,044 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:09:23,044 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:09:23,044 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:09:23,044 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:09:23,046 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:09:23,056 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 22:09:23,056 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 22:09:24,953 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:09:24,959 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:09:24,960 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:09:24,960 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:09:24,960 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:09:24,960 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:09:24,960 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:09:24,960 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:09:24,969 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:09:24] "GET / HTTP/1.1" 200 -
+2025-04-21 22:09:25,132 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:09:25] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-21 22:09:25,138 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:09:25] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-04-21 22:12:18,927 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+Fever, Cough, Headache
+
+Patient details: Fe...
+2025-04-21 22:12:19,111 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:12:19,116 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:12:19,116 - rag-query - INFO - Score range: 0.5556 to 0.7126
+2025-04-21 22:12:19,116 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:12:19,116 - rag-query - INFO - Found 3 results using relaxed threshold of 0.65
+2025-04-21 22:12:19,116 - rag-query - WARNING - Query attempt 1 failed: too many values to unpack (expected 2)
+2025-04-21 22:12:19,117 - rag-query - INFO - Retrying... (1/1)
+2025-04-21 22:12:20,288 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:12:20,295 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:12:20,295 - rag-query - INFO - Score range: 0.5556 to 0.7126
+2025-04-21 22:12:20,295 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:12:20,295 - rag-query - INFO - Found 3 results using relaxed threshold of 0.65
+2025-04-21 22:12:20,295 - rag-query - WARNING - Query attempt 2 failed: too many values to unpack (expected 2)
+2025-04-21 22:12:20,295 - rag-query - ERROR - All retry attempts failed
+2025-04-21 22:12:20,295 - medical-rag - ERROR - Error processing medical query: Failed to query medical database after 1 attempts. Last error: too many values to unpack (expected 2)
+2025-04-21 22:12:20,340 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:12:20,349 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:12:20,349 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:12:20,349 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:12:20,349 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:12:20,349 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:12:20,349 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:12:20,349 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:12:20,353 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:12:20] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-21 22:21:05,840 - werkzeug - INFO -  * Detected change in '/home/understressengineer/programming/Mozohack6.0-Hackathon/Frontend_Connection/query_data.py', reloading
+2025-04-21 22:21:06,289 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 22:21:08,013 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:21:08,069 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:21:08,619 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:21:08,667 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:21:08,667 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:21:08,667 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:21:08,667 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:21:08,667 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:21:08,667 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:21:08,667 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:21:08,669 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:21:08,681 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 22:21:08,681 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 22:21:11,023 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+Fever, Cough, Headache, loss of appetite, l...
+2025-04-21 22:21:11,235 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:21:11,240 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:21:11,241 - rag-query - INFO - Score range: 0.5985 to 0.7422
+2025-04-21 22:21:11,241 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:21:11,241 - rag-query - INFO - Found 3 results using relaxed threshold of 0.65
+2025-04-21 22:21:11,242 - rag-query - INFO - Sending query to LLM
+2025-04-21 22:23:09,671 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-21 22:23:09,673 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-21 22:23:09,674 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:23:09] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-21 22:24:19,034 - app - INFO - Sending medical query: 
+Recovery and treatment plan for patient with:
+Current condition is critical, on life support
+
+Patie...
+2025-04-21 22:24:19,204 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:24:19,209 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:24:19,210 - rag-query - INFO - Score range: 0.7008 to 0.7741
+2025-04-21 22:24:19,210 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:24:19,210 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:24:19,210 - rag-query - INFO - Found 6 results using relaxed threshold of 0.75
+2025-04-21 22:24:19,210 - rag-query - INFO - Sending query to LLM
+2025-04-21 22:26:03,287 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-21 22:26:03,290 - medical-rag - INFO - Medical query processed successfully. Type: recovery
+2025-04-21 22:26:03,290 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:26:03] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-21 22:58:26,032 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:58:26,073 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:58:26,574 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:58:26,611 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:58:26,611 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:58:26,611 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:58:26,611 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:58:26,612 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:58:26,612 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:58:26,612 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:58:26,613 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:58:26,624 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 22:58:26,624 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 22:58:26,625 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 22:58:28,321 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:58:28,363 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:58:28,549 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:58:28,589 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:58:28,589 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:58:28,590 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:58:28,590 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:58:28,590 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:58:28,590 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:58:28,590 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:58:28,592 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:58:28,603 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 22:58:28,603 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 22:58:28,671 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:58:28,678 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:58:28,678 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:58:28,678 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:58:28,678 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:58:28,678 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:58:28,678 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:58:28,678 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:58:28,687 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:58:28] "GET / HTTP/1.1" 200 -
+2025-04-21 22:58:28,828 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:58:28] "GET /static/style.css HTTP/1.1" 200 -
+2025-04-21 22:58:28,838 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 22:58:28] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-21 22:59:49,938 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:59:49,986 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:59:50,192 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:59:50,248 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:59:50,248 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:59:50,248 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:59:50,248 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:59:50,249 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:59:50,249 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:59:50,249 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:59:50,251 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:59:50,264 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 22:59:50,264 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 22:59:50,265 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 22:59:56,309 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:59:56,347 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:59:56,513 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:59:56,550 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:59:56,550 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:59:56,550 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:59:56,550 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:59:56,551 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:59:56,551 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:59:56,551 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:59:56,552 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:59:56,563 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 22:59:56,563 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 22:59:56,564 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 22:59:58,052 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 22:59:58,087 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 22:59:58,279 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 22:59:58,312 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 22:59:58,312 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 22:59:58,312 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 22:59:58,312 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 22:59:58,313 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 22:59:58,313 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 22:59:58,313 - rag-query - WARNING - No relevant medical information found
+2025-04-21 22:59:58,315 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 22:59:58,325 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 22:59:58,326 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 23:05:30,219 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:05:30,229 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:05:30,229 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:05:30,229 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:05:30,229 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:05:30,230 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:05:30,230 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:05:30,230 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:05:30,242 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:05:30] "GET / HTTP/1.1" 200 -
+2025-04-21 23:05:30,386 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:05:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-21 23:05:30,393 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:05:30] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-21 23:06:56,935 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:06:56,979 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:06:57,306 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:06:57,343 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:06:57,344 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:06:57,344 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:06:57,344 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:06:57,344 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:06:57,344 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:06:57,344 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:06:57,346 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:06:57,357 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 23:06:57,357 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 23:06:57,358 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 23:06:59,016 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:06:59,055 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:06:59,236 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:06:59,272 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:06:59,272 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:06:59,272 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:06:59,272 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:06:59,272 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:06:59,272 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:06:59,272 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:06:59,274 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:06:59,282 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 23:06:59,282 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 23:06:59,395 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:06:59,402 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:06:59,402 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:06:59,402 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:06:59,402 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:06:59,403 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:06:59,403 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:06:59,403 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:06:59,411 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:06:59] "GET / HTTP/1.1" 200 -
+2025-04-21 23:06:59,490 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:06:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-21 23:06:59,491 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:06:59] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-21 23:45:39,093 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:45:39,180 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:45:41,197 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:45:41,276 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:45:41,276 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:45:41,276 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:45:41,276 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:45:41,276 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:45:41,277 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:45:41,277 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:45:41,278 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:45:41,302 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 23:45:41,303 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 23:45:41,304 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 23:45:45,171 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:45:45,267 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:45:45,865 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:45:45,979 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:45:45,980 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:45:45,980 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:45:45,980 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:45:45,980 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:45:45,981 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:45:45,981 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:45:45,987 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:45:46,015 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 23:45:46,016 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 23:45:50,058 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:45:50,070 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:45:50,070 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:45:50,070 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:45:50,070 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:45:50,071 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:45:50,071 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:45:50,071 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:45:50,086 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:45:50] "GET / HTTP/1.1" 200 -
+2025-04-21 23:45:50,384 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:45:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-21 23:45:50,399 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:45:50] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-04-21 23:55:24,352 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:55:24,407 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:55:25,731 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:55:25,809 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:55:25,809 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:55:25,809 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:55:25,810 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:55:25,810 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:55:25,811 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:55:25,811 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:55:25,814 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:55:25,837 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 23:55:25,837 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 23:55:25,839 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 23:55:28,233 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:55:28,285 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:55:28,534 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:55:28,596 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:55:28,596 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:55:28,596 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:55:28,596 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:55:28,597 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:55:28,597 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:55:28,597 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:55:28,600 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:55:28,617 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 23:55:28,617 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 23:55:32,083 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:55:32,093 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:55:32,093 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:55:32,093 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:55:32,094 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:55:32,094 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:55:32,094 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:55:32,094 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:55:32,107 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:55:32] "GET / HTTP/1.1" 200 -
+2025-04-21 23:55:32,361 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:55:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-21 23:55:32,376 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:55:32] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-04-21 23:58:15,740 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:58:15,792 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:58:16,024 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:58:16,083 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:58:16,083 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:58:16,083 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:58:16,083 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:58:16,084 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:58:16,084 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:58:16,084 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:58:16,086 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:58:16,102 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-21 23:58:16,102 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-21 23:58:16,103 - werkzeug - INFO -  * Restarting with stat
+2025-04-21 23:58:18,209 - medical-rag - INFO - Medical RAG application starting
+2025-04-21 23:58:18,269 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-21 23:58:19,599 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:58:19,681 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:58:19,681 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:58:19,681 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:58:19,681 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:58:19,682 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:58:19,682 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:58:19,682 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:58:19,684 - medical-rag - INFO - Initial database health check: Passed
+2025-04-21 23:58:19,700 - werkzeug - WARNING -  * Debugger is active!
+2025-04-21 23:58:19,701 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-21 23:58:19,918 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-21 23:58:19,926 - rag-query - INFO - Query returned 15 raw results
+2025-04-21 23:58:19,926 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-21 23:58:19,927 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-21 23:58:19,927 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-21 23:58:19,927 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-21 23:58:19,927 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-21 23:58:19,927 - rag-query - WARNING - No relevant medical information found
+2025-04-21 23:58:19,948 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:58:19] "GET / HTTP/1.1" 200 -
+2025-04-21 23:58:20,321 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:58:20] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-21 23:58:20,322 - werkzeug - INFO - 127.0.0.1 - - [21/Apr/2025 23:58:20] "GET /static/style.css HTTP/1.1" 200 -
+2025-04-22 01:13:02,381 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:13:02,432 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:13:03,038 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:13:03,088 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:13:03,088 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:13:03,088 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:13:03,088 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:13:03,088 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:13:03,088 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:13:03,088 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:13:03,091 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:13:03,105 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 01:13:03,107 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 01:13:03,108 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 01:13:04,929 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:13:04,971 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:13:05,180 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:13:05,222 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:13:05,222 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:13:05,222 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:13:05,222 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:13:05,222 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:13:05,222 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:13:05,222 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:13:05,224 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:13:05,234 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 01:13:05,234 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 01:13:05,298 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:13:05,306 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:13:05,306 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:13:05,306 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:13:05,306 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:13:05,306 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:13:05,306 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:13:05,306 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:13:05,315 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:13:05] "GET / HTTP/1.1" 200 -
+2025-04-22 01:13:05,493 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:13:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 01:13:05,494 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:13:05] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-22 01:13:08,252 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:13:08] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-22 01:13:17,244 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+..
+
+Patient details: //...
+
+Relevant medica...
+2025-04-22 01:13:17,457 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:13:17,463 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:13:17,463 - rag-query - INFO - Score range: 0.6915 to 0.7682
+2025-04-22 01:13:17,463 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:13:17,463 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:13:17,464 - rag-query - INFO - Found 11 results using relaxed threshold of 0.75
+2025-04-22 01:13:17,464 - rag-query - INFO - Sending query to LLM
+2025-04-22 01:15:34,953 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-22 01:15:34,981 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-22 01:15:34,982 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:15:34] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-22 01:28:53,210 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:28:53,267 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:28:54,166 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:28:54,210 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:28:54,211 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:28:54,211 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:28:54,211 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:28:54,211 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:28:54,211 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:28:54,211 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:28:54,213 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:28:54,225 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 01:28:54,226 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 01:28:54,226 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 01:28:55,811 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:28:55,852 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:28:56,025 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:28:56,063 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:28:56,064 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:28:56,064 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:28:56,064 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:28:56,064 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:28:56,064 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:28:56,064 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:28:56,065 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:28:56,074 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 01:28:56,074 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 01:29:14,372 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:29:14,381 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:29:14,382 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:29:14,382 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:29:14,382 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:29:14,382 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:29:14,382 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:29:14,382 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:29:14,393 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:29:14] "GET / HTTP/1.1" 200 -
+2025-04-22 01:29:14,553 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:29:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 01:29:14,554 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:29:14] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-22 01:32:38,824 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:32:38,873 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:32:39,101 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:32:39,193 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:32:39,193 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:32:39,193 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:32:39,193 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:32:39,194 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:32:39,194 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:32:39,194 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:32:39,196 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:32:39,209 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 01:32:39,209 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 01:32:39,210 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 01:32:40,979 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:32:41,020 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:32:41,191 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:32:41,230 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:32:41,230 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:32:41,230 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:32:41,230 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:32:41,230 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:32:41,230 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:32:41,230 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:32:41,232 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:32:41,241 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 01:32:41,242 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 01:32:41,917 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:32:41,926 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:32:41,926 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:32:41,926 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:32:41,926 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:32:41,926 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:32:41,926 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:32:41,926 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:32:41,935 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:32:41] "GET / HTTP/1.1" 200 -
+2025-04-22 01:32:42,106 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:32:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 01:32:42,106 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:32:42] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-22 01:34:50,579 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:34:50,624 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:34:50,806 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:34:50,843 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:34:50,843 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:34:50,843 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:34:50,843 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:34:50,843 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:34:50,843 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:34:50,843 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:34:50,845 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:34:50,856 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 01:34:50,856 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 01:34:50,857 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 01:34:52,505 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:34:52,553 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:34:52,830 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:34:52,987 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:34:52,987 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:34:52,988 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:34:52,988 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:34:52,988 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:34:52,988 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:34:52,989 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:34:52,995 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:34:53,027 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 01:34:53,028 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 01:34:53,113 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:34:53,119 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:34:53,120 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:34:53,120 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:34:53,120 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:34:53,120 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:34:53,120 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:34:53,120 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:34:53,130 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:34:53] "GET / HTTP/1.1" 200 -
+2025-04-22 01:34:53,295 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:34:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 01:34:53,296 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:34:53] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-22 01:37:26,525 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:37:26,569 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:37:26,776 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:37:26,816 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:37:26,817 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:37:26,817 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:37:26,817 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:37:26,817 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:37:26,817 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:37:26,817 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:37:26,819 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:37:26,831 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 01:37:26,831 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 01:37:26,832 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 01:37:28,517 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 01:37:28,557 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 01:37:28,733 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:37:28,772 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:37:28,773 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:37:28,773 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:37:28,773 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:37:28,773 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:37:28,773 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:37:28,773 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:37:28,775 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 01:37:28,785 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 01:37:28,785 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 01:37:28,888 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:37:28,895 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 01:37:28,895 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 01:37:28,895 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 01:37:28,895 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 01:37:28,895 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 01:37:28,895 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 01:37:28,895 - rag-query - WARNING - No relevant medical information found
+2025-04-22 01:37:28,903 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:37:28] "GET / HTTP/1.1" 200 -
+2025-04-22 01:37:29,054 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:37:29] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-22 01:37:29,055 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 01:37:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 01:40:35,637 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:40:52,296 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:41:07,229 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:41:23,201 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:41:40,038 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:41:57,003 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:42:14,759 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:42:36,003 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:42:54,058 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:43:10,687 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:43:31,659 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:43:48,615 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:44:09,092 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:44:26,356 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:44:44,580 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:45:02,556 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:45:21,909 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:45:43,688 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:46:02,820 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:46:25,357 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:46:46,086 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:47:05,701 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:47:26,229 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:47:45,125 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:48:06,936 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:48:25,376 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:48:50,256 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:49:08,627 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:49:26,291 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:49:47,801 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:50:06,272 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:50:24,432 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:50:42,393 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:51:04,065 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:51:23,308 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:51:46,158 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:52:18,184 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:52:48,251 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:53:18,332 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:53:39,928 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:53:59,002 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:54:20,177 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:54:43,780 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:55:02,817 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:55:23,243 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:55:42,545 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:56:02,180 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:56:21,953 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:56:39,378 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:56:59,684 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:57:21,552 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:57:44,416 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:58:07,502 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:58:27,980 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:58:52,896 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:59:15,848 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:59:35,267 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 01:59:56,343 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:00:16,488 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:00:41,662 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:01:03,680 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:01:27,930 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:01:49,934 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:02:14,990 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:02:35,049 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:02:55,069 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:03:19,652 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:03:44,667 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:04:09,938 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:04:31,771 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:04:55,933 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:05:16,401 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:05:35,836 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:05:56,921 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:06:17,296 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:06:40,820 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:07:00,595 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:07:23,656 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:07:42,590 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:08:06,726 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:08:27,355 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:08:48,130 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:09:09,706 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:09:33,506 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:09:58,300 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:10:23,317 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:10:44,025 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:11:04,408 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:11:27,831 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:11:47,637 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:12:12,087 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:12:31,852 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:12:55,982 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:13:20,945 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:13:42,088 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:14:20,695 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:14:52,929 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:15:24,875 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:15:24,912 - medical-rag - ERROR - Error processing document 20250422_013743_c46528ba033a8197e32c40887c398198.pdf: attempt to write a readonly database
+2025-04-22 02:15:24,912 - rag-query - INFO - Removing existing database at chroma
+2025-04-22 02:15:24,912 - rag-query - INFO - Creating database backup at chroma_backups/chroma_backup_1745268324
+2025-04-22 02:15:24,913 - rag-query - INFO - Database successfully removed
+2025-04-22 02:19:14,966 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:19:37,799 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:19:37,865 - medical-rag - ERROR - Failed to recover database: attempt to write a readonly database
+2025-04-22 02:19:37,961 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:19:37] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2025-04-22 02:19:38,052 - rag-query - ERROR - Database connection error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:19:38,053 - rag-query - WARNING - Query attempt 1 failed: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:19:38,053 - rag-query - INFO - Retrying... (1/1)
+2025-04-22 02:19:39,130 - rag-query - ERROR - Database connection error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:19:39,131 - rag-query - WARNING - Query attempt 2 failed: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:19:39,131 - rag-query - ERROR - All retry attempts failed
+2025-04-22 02:19:39,131 - medical-rag - ERROR - Database health check failed: Failed to query medical database after 1 attempts. Last error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:19:39,140 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:19:39] "GET / HTTP/1.1" 200 -
+2025-04-22 02:19:39,450 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:19:39] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-04-22 02:19:39,451 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:19:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 02:30:18,976 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+I have a very bad headache
+
+Patient details...
+2025-04-22 02:30:19,068 - rag-query - ERROR - Database connection error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:19,069 - rag-query - WARNING - Query attempt 1 failed: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:19,069 - rag-query - INFO - Retrying... (1/1)
+2025-04-22 02:30:20,170 - rag-query - ERROR - Database connection error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:20,170 - rag-query - WARNING - Query attempt 2 failed: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:20,170 - rag-query - ERROR - All retry attempts failed
+2025-04-22 02:30:20,171 - medical-rag - ERROR - Error processing medical query: Failed to query medical database after 1 attempts. Last error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:20,222 - rag-query - ERROR - Database connection error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:20,223 - rag-query - WARNING - Query attempt 1 failed: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:20,223 - rag-query - INFO - Retrying... (1/1)
+2025-04-22 02:30:21,308 - rag-query - ERROR - Database connection error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:21,309 - rag-query - WARNING - Query attempt 2 failed: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:21,309 - rag-query - ERROR - All retry attempts failed
+2025-04-22 02:30:21,309 - medical-rag - ERROR - Database health check failed: Failed to query medical database after 1 attempts. Last error: Could not connect to tenant default_tenant. Are you sure it exists?
+2025-04-22 02:30:21,323 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:30:21] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-22 02:33:40,012 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:33:40,080 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:33:40,351 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:33:40,439 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:33:40,439 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:33:40,439 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:33:40,440 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:33:40,440 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:33:40,440 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:33:40,440 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:33:40,444 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:33:40,473 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 02:33:40,474 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 02:33:40,475 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 02:33:42,743 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:33:42,794 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:33:43,063 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:33:43,117 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:33:43,118 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:33:43,118 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:33:43,118 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:33:43,118 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:33:43,118 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:33:43,118 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:33:43,121 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:33:43,135 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 02:33:43,136 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 02:33:43,230 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:33:43,240 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:33:43,240 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:33:43,240 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:33:43,241 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:33:43,241 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:33:43,241 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:33:43,241 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:33:43,253 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:33:43] "GET / HTTP/1.1" 200 -
+2025-04-22 02:33:43,404 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:33:43] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-04-22 02:33:43,405 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:33:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 02:34:32,332 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+headache, fever
+
+Patient details: age 22, n...
+2025-04-22 02:34:32,865 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:34:32,873 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:34:32,874 - rag-query - INFO - Score range: 0.5613 to 0.7451
+2025-04-22 02:34:32,874 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:34:32,874 - rag-query - INFO - Found 2 results using relaxed threshold of 0.65
+2025-04-22 02:34:32,874 - rag-query - INFO - Sending query to LLM
+2025-04-22 02:36:47,614 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-22 02:36:47,617 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-22 02:36:47,618 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:36:47] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-22 02:40:00,950 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:40:01,026 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:40:03,370 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:40:03,481 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:40:03,482 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:40:03,482 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:40:03,482 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:40:03,482 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:40:03,482 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:40:03,483 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:40:03,485 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:40:03,517 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 02:40:03,517 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 02:40:03,519 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 02:40:06,503 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:40:06,565 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:40:06,919 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:40:06,978 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:40:06,979 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:40:06,979 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:40:06,979 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:40:06,979 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:40:06,979 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:40:06,979 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:40:06,982 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:40:06,997 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 02:40:06,998 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 02:40:07,021 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+headache, fever
+
+Patient details: age 22, n...
+2025-04-22 02:40:07,024 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+headache, fever
+
+Patient details: age 22, n...
+2025-04-22 02:40:07,027 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+headache, fever
+
+Patient details: age 22, n...
+2025-04-22 02:40:07,339 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:40:07,349 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:40:07,350 - rag-query - INFO - Score range: 0.5613 to 0.7451
+2025-04-22 02:40:07,351 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:40:07,351 - rag-query - INFO - Found 2 results using relaxed threshold of 0.65
+2025-04-22 02:40:07,352 - rag-query - INFO - Sending query to LLM
+2025-04-22 02:40:12,388 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:40:12,404 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:40:12,405 - rag-query - INFO - Score range: 0.5613 to 0.7451
+2025-04-22 02:40:12,405 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:40:12,405 - rag-query - INFO - Found 2 results using relaxed threshold of 0.65
+2025-04-22 02:40:12,406 - rag-query - INFO - Sending query to LLM
+2025-04-22 02:40:17,730 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:40:17,743 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:40:17,744 - rag-query - INFO - Score range: 0.5613 to 0.7451
+2025-04-22 02:40:17,744 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:40:17,745 - rag-query - INFO - Found 2 results using relaxed threshold of 0.65
+2025-04-22 02:40:17,745 - rag-query - INFO - Sending query to LLM
+2025-04-22 02:42:17,931 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:42:18,000 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:42:18,327 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:42:18,397 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:42:18,397 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:42:18,397 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:42:18,397 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:42:18,397 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:42:18,397 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:42:18,398 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:42:18,400 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:42:18,415 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 02:42:18,416 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 02:42:18,417 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 02:42:20,368 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:42:20,436 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:42:20,717 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:42:20,781 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:42:20,781 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:42:20,781 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:42:20,781 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:42:20,781 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:42:20,781 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:42:20,782 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:42:20,784 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:42:20,795 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 02:42:20,796 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 02:42:24,744 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+headache, fever
+
+Patient details: age 22, n...
+2025-04-22 02:42:25,334 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:42:25,342 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:42:25,343 - rag-query - INFO - Score range: 0.5613 to 0.7451
+2025-04-22 02:42:25,343 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:42:25,343 - rag-query - INFO - Found 2 results using relaxed threshold of 0.65
+2025-04-22 02:42:25,344 - rag-query - INFO - Sending query to LLM
+2025-04-22 02:44:21,120 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-22 02:44:21,125 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-22 02:44:21,128 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:44:21] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-22 02:44:31,947 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:44:31,957 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:44:31,957 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:44:31,957 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:44:31,957 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:44:31,957 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:44:31,957 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:44:31,958 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:44:31,968 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:44:31] "GET / HTTP/1.1" 200 -
+2025-04-22 02:44:32,170 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:44:32] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-22 02:44:32,171 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:44:32] "GET /static/style.css HTTP/1.1" 200 -
+2025-04-22 02:44:32,214 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:44:32] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-22 02:45:33,239 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+headache, fever
+
+Patient details: patient i...
+2025-04-22 02:45:33,491 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:45:33,497 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:45:33,498 - rag-query - INFO - Score range: 0.5712 to 0.7365
+2025-04-22 02:45:33,498 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:45:33,498 - rag-query - INFO - Found 2 results using relaxed threshold of 0.65
+2025-04-22 02:45:33,498 - rag-query - INFO - Sending query to LLM
+2025-04-22 02:46:46,492 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-22 02:46:46,493 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-22 02:46:46,493 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:46:46] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-22 02:51:40,021 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:51:40,061 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:51:41,075 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:51:41,123 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:51:41,123 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:51:41,123 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:51:41,123 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:51:41,123 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:51:41,123 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:51:41,123 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:51:41,126 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:51:41,137 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-22 02:51:41,138 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-22 02:51:41,139 - werkzeug - INFO -  * Restarting with stat
+2025-04-22 02:51:42,835 - medical-rag - INFO - Medical RAG application starting
+2025-04-22 02:51:42,874 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-22 02:51:43,094 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:51:43,133 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:51:43,133 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:51:43,133 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:51:43,133 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:51:43,133 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:51:43,133 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:51:43,133 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:51:43,135 - medical-rag - INFO - Initial database health check: Passed
+2025-04-22 02:51:43,144 - werkzeug - WARNING -  * Debugger is active!
+2025-04-22 02:51:43,144 - werkzeug - INFO -  * Debugger PIN: 353-669-230
+2025-04-22 02:51:43,268 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:51:43,276 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:51:43,276 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-22 02:51:43,276 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:51:43,276 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-22 02:51:43,276 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-22 02:51:43,276 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-22 02:51:43,276 - rag-query - WARNING - No relevant medical information found
+2025-04-22 02:51:43,284 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:51:43] "GET / HTTP/1.1" 200 -
+2025-04-22 02:51:43,417 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:51:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-22 02:51:43,418 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:51:43] "GET /static/script.js HTTP/1.1" 200 -
+2025-04-22 02:54:33,670 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+nausea, vomitting, eating too much or too l...
+2025-04-22 02:54:33,925 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-22 02:54:33,931 - rag-query - INFO - Query returned 15 raw results
+2025-04-22 02:54:33,932 - rag-query - INFO - Score range: 0.6097 to 0.7349
+2025-04-22 02:54:33,932 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-22 02:54:33,932 - rag-query - INFO - Found 3 results using relaxed threshold of 0.65
+2025-04-22 02:54:33,932 - rag-query - INFO - Sending query to LLM
+2025-04-22 02:56:10,801 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-22 02:56:10,803 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-22 02:56:10,804 - werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 02:56:10] "POST /api/medical-query HTTP/1.1" 200 -
+2025-04-23 16:14:23,792 - medical-rag - INFO - Medical RAG application starting
+2025-04-23 16:14:23,875 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-23 16:14:24,613 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1eaed13970>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:24,615 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1eaed13220>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:24,625 - backoff - INFO - Backing off send_request(...) for 0.6s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1eaed12c80>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:25,156 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-23 16:14:25,282 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1eaed12830>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:25,285 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1eaed13400>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:25,291 - backoff - INFO - Backing off send_request(...) for 0.7s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1eaed13e20>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:25,365 - rag-query - INFO - Query returned 15 raw results
+2025-04-23 16:14:25,366 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-23 16:14:25,366 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-23 16:14:25,367 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-23 16:14:25,367 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-23 16:14:25,368 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-23 16:14:25,368 - rag-query - WARNING - No relevant medical information found
+2025-04-23 16:14:25,377 - medical-rag - INFO - Initial database health check: Passed
+2025-04-23 16:14:25,437 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-23 16:14:25,438 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 16:14:25,441 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 16:14:26,009 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead978280>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:26,010 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead978430>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:26,011 - backoff - INFO - Backing off send_request(...) for 2.3s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead9785e0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:27,654 - medical-rag - INFO - Medical RAG application starting
+2025-04-23 16:14:27,706 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-23 16:14:28,276 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead978850>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,277 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead978ac0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,278 - backoff - ERROR - Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead978c70>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:28,361 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-23 16:14:28,412 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79f9c190>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,413 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79f9cbb0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,416 - backoff - INFO - Backing off send_request(...) for 0.4s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79f9cd90>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:28,417 - rag-query - INFO - Query returned 15 raw results
+2025-04-23 16:14:28,417 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-23 16:14:28,417 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-23 16:14:28,418 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-23 16:14:28,418 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-23 16:14:28,418 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-23 16:14:28,418 - rag-query - WARNING - No relevant medical information found
+2025-04-23 16:14:28,420 - medical-rag - INFO - Initial database health check: Passed
+2025-04-23 16:14:28,434 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 16:14:28,435 - werkzeug - INFO -  * Debugger PIN: 423-422-989
+2025-04-23 16:14:28,787 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979030>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,788 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979420>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,790 - backoff - INFO - Backing off send_request(...) for 0.6s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead9795d0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:28,857 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a068730>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,859 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a0688e0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:28,861 - backoff - INFO - Backing off send_request(...) for 1.6s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a068a90>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:29,410 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979840>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:29,410 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979ab0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:29,412 - backoff - INFO - Backing off send_request(...) for 1.2s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979c60>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:30,439 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a068d00>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:30,440 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a068f70>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:30,441 - backoff - INFO - Backing off send_request(...) for 1.2s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a069120>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:30,662 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979ed0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:30,663 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead97a140>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:30,664 - backoff - INFO - Backing off send_request(...) for 3.4s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead9796f0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:31,684 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a069390>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:31,685 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a069600>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:31,687 - backoff - ERROR - Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a0697b0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:34,100 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979cc0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:34,101 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead979930>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:34,101 - backoff - ERROR - Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7a1ead978e20>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:35,693 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a06ae30>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:35,696 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a06b2e0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:35,698 - backoff - INFO - Backing off send_request(...) for 0.7s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff7a068fd0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:35,901 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-23 16:14:35,911 - rag-query - INFO - Query returned 15 raw results
+2025-04-23 16:14:35,911 - rag-query - INFO - Score range: 1.0263 to 1.1195
+2025-04-23 16:14:35,911 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-23 16:14:35,911 - rag-query - INFO - No results at threshold 0.65, increasing to 0.75
+2025-04-23 16:14:35,911 - rag-query - INFO - No results at threshold 0.75, increasing to 0.85
+2025-04-23 16:14:35,911 - rag-query - INFO - No results at threshold 0.85, increasing to 0.95
+2025-04-23 16:14:35,911 - rag-query - WARNING - No relevant medical information found
+2025-04-23 16:14:35,926 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 16:14:35] "GET / HTTP/1.1" 200 -
+2025-04-23 16:14:36,172 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 16:14:36] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-04-23 16:14:36,173 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 16:14:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-04-23 16:14:36,426 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79eb8cd0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:36,427 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79eb8f10>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:36,429 - backoff - INFO - Backing off send_request(...) for 0.5s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79eba9b0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:36,944 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79ebad70>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:36,947 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79ebb1c0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:36,951 - backoff - INFO - Backing off send_request(...) for 0.8s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79ebb130>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:14:37,761 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79ebbd00>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:37,763 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79ebba90>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")': /batch/
+2025-04-23 16:14:37,766 - backoff - ERROR - Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x77ff79ebb8e0>: Failed to resolve 'us.i.posthog.com' ([Errno -3] Temporary failure in name resolution)")))
+2025-04-23 16:16:38,997 - app - INFO - Sending medical query: 
+Medical assessment for patient with following symptoms:
+Fever, Vomitting, headache
+
+Patient details...
+2025-04-23 16:16:39,463 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-04-23 16:16:39,471 - rag-query - INFO - Query returned 15 raw results
+2025-04-23 16:16:39,471 - rag-query - INFO - Score range: 0.6169 to 0.7438
+2025-04-23 16:16:39,471 - rag-query - INFO - No results at threshold 0.55, increasing to 0.65
+2025-04-23 16:16:39,471 - rag-query - INFO - Found 3 results using relaxed threshold of 0.65
+2025-04-23 16:16:39,472 - rag-query - INFO - Sending query to LLM
+2025-04-23 16:21:05,313 - rag-query - INFO - Query successful. Sources used: ['data/BasicProcedure.pdf', 'data/BasicProcedure.pdf', 'data/BasicProcedure.pdf']
+2025-04-23 16:21:05,315 - medical-rag - INFO - Medical query processed successfully. Type: disease
+2025-04-23 16:21:05,316 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 16:21:05] "POST /api/medical-query HTTP/1.1" 200 -
